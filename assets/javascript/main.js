@@ -32,6 +32,10 @@ function expand() {
   }
 
   // do animation
+  let circle = getCircle();
+  circle.style.height = "40vh";
+  circle.style.width = "40vh";
+  circle.style.transition = "all " + inhale + "s ease";
   console.log("Expanding!");
 
   // Make the circle expand
@@ -46,7 +50,7 @@ function holdExpand() {
   }
 
   // do animation
-  console.log("Holding after expan!");
+  console.log("Holding after expand!");
   
   setTimeout(function() {
     shrink();
@@ -56,6 +60,10 @@ function holdExpand() {
 function shrink(end) {
   // Do animation
   console.log("Shrinking!");
+  let circle = getCircle();
+  circle.style.height = "30vh";
+  circle.style.width = "30vh";
+  circle.style.transition = "all " + exhale + "s ease";
   
   if (end || shouldEnd()) {
     return;
@@ -81,4 +89,8 @@ function holdShrink() {
 
 function shouldEnd() {
   return (new Date()) > endTime;
+}
+
+function getCircle() {
+  return document.getElementById('circle');
 }
