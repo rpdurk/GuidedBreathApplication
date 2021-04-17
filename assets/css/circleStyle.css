@@ -1,0 +1,32 @@
+html,
+body {
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    height:100%;
+    background-color: #f0f8ff;
+}
+
+.container {
+  height: 100%;
+}
+
+#main {
+  width: 100%;
+  height: 275px;
+}
+
+.circleContainer {
+  width: 100%;
+  height: calc(100% - 275px);
+  background-color: #f0f8ff;
+}
+
+.circle {
+  height: 40%;
+  width: 40%;
+  background-color: #0da2ff;
+  border-radius: 50%;
+  display: inline-block;
+}
