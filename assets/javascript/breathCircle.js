@@ -10,6 +10,10 @@ const window_width = window.innerWidth;
 canvas.height = window_height;
 canvas.width = window_width;
 
+// **************** attempt to center canvas **********************
+// canvas.height = window_height/2;
+// canvas.width = window_width/2;
+
 // set backgroundColor to something neutral
 canvas.style.backgroundColor = '#f0f8ff';
 

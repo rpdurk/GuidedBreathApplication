@@ -12,32 +12,32 @@
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         <a>
             <div id='divInhale' class="slidecontainer" >
-                <h6>Inhale</h6>
-            <input type="range" min="1" max="100" value="50" class="slider" id="inhaleValue">
+                <h6>Inhale Time: <span id='chosenInhale'></span></h6>
+            <input type="range" min="0" max="30" value="4" class="slider" id="inhaleValue">
             </div>
         </a>
         <a>
             <div id='divInhaleHold' class="slidecontainer" >
-                <h6>Hold</h6>
-            <input type="range" min="1" max="100" value="50" class="slider" id="inhaleHoldValue">
+                <h6>Hold Time: <span id='chosenInhaleHold'></span></h6>
+            <input type="range" min="0" max="30" value="4" class="slider" id="inhaleHoldValue">
           </div>
         </a>
         <a>
             <div id='divExhale' class="slidecontainer">
-                <h6>Exhale</h6>
-            <input type="range" min="1" max="100" value="50" class="slider" id="exhaleValue">
+                <h6>Exhale Time: <span id='chosenExhale'></span></h6>
+            <input type="range" min="0" max="30" value="4" class="slider" id="exhaleValue">
           </div>
         </a>
         <a>
             <div id='divExhaleHold' class="slidecontainer">
-                <h6>Hold</h6>
-            <input type="range" min="1" max="100" value="50" class="slider" id="exhaleHoldValue">
+                <h6>Hold Time: <span id='chosenExhaleHold'></span></h6>
+            <input type="range" min="0" max="30" value="4" class="slider" id="exhaleHoldValue">
             </div>
         </a>
         <a>
             <div id='divDuration' class="slidecontainer">
-                <h6>Duration</h6>
-            <input type="range" min="1" max="100" value="50" class="slider" id="duration">
+                <h6>Duration: <span id='chosenDuration'></span></h6>
+            <input type="range" min="1" max="60" value="20" class="slider" id="durationValue">
             </div>
         </a>
       </div>
@@ -58,6 +58,7 @@
    
    <script src="./assets/javascript/breathCircle.js"></script>
     <script src="./assets/javascript/transformBreathCircle.js"></script>
-    <script src="./assets/javascript/navScript.js"></script> 
+    <script src="./assets/javascript/navScript.js"></script>
+    <script src="./assets/javascript/breathSelectionScript.js"></script>
 </body>
 </html>
