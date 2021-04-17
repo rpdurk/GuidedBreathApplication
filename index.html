@@ -4,13 +4,60 @@
     <meta charset="UTF-8">
     <title>GuidedBreath</title>
 </head>
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/canvasStyle.css">
+    <link rel="stylesheet" href="assets/css/sliderStyle.css">
+    <link rel="stylesheet" href="assets/css/navStyle.css">
 <body>
-
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a>
+            <div id='divInhale' class="slidecontainer" >
+                <h6>Inhale</h6>
+            <input type="range" min="1" max="100" value="50" class="slider" id="inhaleValue">
+            </div>
+        </a>
+        <a>
+            <div id='divInhaleHold' class="slidecontainer" >
+                <h6>Hold</h6>
+            <input type="range" min="1" max="100" value="50" class="slider" id="inhaleHoldValue">
+          </div>
+        </a>
+        <a>
+            <div id='divExhale' class="slidecontainer">
+                <h6>Exhale</h6>
+            <input type="range" min="1" max="100" value="50" class="slider" id="exhaleValue">
+          </div>
+        </a>
+        <a>
+            <div id='divExhaleHold' class="slidecontainer">
+                <h6>Hold</h6>
+            <input type="range" min="1" max="100" value="50" class="slider" id="exhaleHoldValue">
+            </div>
+        </a>
+        <a>
+            <div id='divDuration' class="slidecontainer">
+                <h6>Duration</h6>
+            <input type="range" min="1" max="100" value="50" class="slider" id="duration">
+            </div>
+        </a>
+      </div>
+      
+      <div id="main">
+        <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Welcome to our visual Breath Guide</span>
+        <h2>Directions:</h2>
+        <p>
+            <ul>1) Select a breathing cadence using the slide bars.</ul>
+            <ul>2) Select a duration for your session.</ul>
+            <ul>3) Customize your experience as needed.</ul>
+            <ul>4) Click start and enjoy!</ul>
+        </p>
+      </div>
     <canvas id="myCanvas"></canvas>
 
    <!-- <script src="./assets/javascript/drawCanvas.js"></script> -->
-    <script src="./assets/javascript/breathCircle.js"></script>
-    <!-- <script src="./assets/javascript/transformBreathCircle.js"></script> -->
+   
+   <script src="./assets/javascript/breathCircle.js"></script>
+    <script src="./assets/javascript/transformBreathCircle.js"></script>
+    <script src="./assets/javascript/navScript.js"></script> 
 </body>
 </html>

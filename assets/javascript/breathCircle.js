@@ -33,6 +33,7 @@ class Circle{
         context.fill();
         context.stroke();
         context.closePath();
+        // context.centerObjects();
     }
 }
 
