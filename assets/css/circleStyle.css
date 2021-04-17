@@ -19,14 +19,20 @@ body {
 
 .circleContainer {
   width: 100%;
-  height: calc(100% - 275px);
+  height: calc(100% - 307px);
   background-color: #f0f8ff;
 }
 
 .circle {
-  height: 40%;
-  width: 40%;
+  height: 30vh;
+  width: 30vh;
   background-color: #0da2ff;
   border-radius: 50%;
   display: inline-block;
+  align-items: center;
+  position: relative;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }
