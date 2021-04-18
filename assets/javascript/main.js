@@ -49,7 +49,13 @@ function holdExpand() {
     shrink(true);
   }
 
-  // do animation
+  // do hold animation for inhale hold
+  if (inhaleHold > 0) {
+    let circle = getCircle();
+    circle.style.border = "15px solid rgb(89, 191, 255, .5)";
+    circle.style.transition.timingFunction = "ease-in-out";
+  }
+  
   console.log("Holding after expand!");
   
   setTimeout(function() {
@@ -58,7 +64,15 @@ function holdExpand() {
 }
 
 function shrink(end) {
-  // Do animation
+  // If inhaleHold Animation was done, remove during exhale animation
+  if (inhaleHold > 0) {
+    let circle = getCircle();
+    // console.log("I was activated!")
+    circle.style.border = "0px solid #0da2ff";
+    circle.style.transition.timingFunction = "step-start";
+  }
+
+  // Do Shrink Animation
   console.log("Shrinking!");
   let circle = getCircle();
   circle.style.height = "30vh";
@@ -75,7 +89,14 @@ function shrink(end) {
 }
 
 function holdShrink() {
-  // do animation
+   // do hold animation for inhale hold
+   if (exhaleHold > 0) {
+    let circle = getCircle();
+    console.log('animation to hold during exhale activated!');
+    circle.style.border = "15px solid rgb(89, 191, 255, .5)";
+    circle.style.transition.timingFunction = "ease-in-out";
+
+  }
   console.log("Holding after shrink!");
 
   if (shouldEnd()) {
