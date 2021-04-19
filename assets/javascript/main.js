@@ -38,15 +38,15 @@ function start() {
   endTime = new Date((new Date()).getTime() + (duration * 60 * 1000));
 
   expand();
-  // need logic to only play if sound is toggled on
-  // if (soundOn()) {
-  //   playExpand(true);
-  // }
 }
 
 function expand() {
   if (shouldEnd()) {
     shrink(true);
+  }
+  // if audio is on, play noise
+  if (audioOn) {
+      playExpand();
   }
   // If exhaleHold Animation was done, remove during exhale animation
   if (exhaleHold > 0) {
@@ -63,12 +63,6 @@ function expand() {
   circle.style.transition = "all " + inhale + "s linear";
   console.log("Expanding!");
 
-  // Sound for expanding only during Expanding
-  // setTimeout(function() {
-  //   playExpand();
-  // }, inhale * 1000);
-  
-
   // Make the circle expand
   setTimeout(function() {
     holdExpand();
@@ -78,6 +72,10 @@ function expand() {
 function holdExpand() {
   if (shouldEnd()) {
     shrink(true);
+  }
+   // if audio is on, play noise
+   if (audioOn) {
+      playExpandHold();
   }
 
   // do hold animation for inhale hold
@@ -89,12 +87,12 @@ function holdExpand() {
     let circle = getCircle();
     circle.classList.add("circle-pulse");
   }
-  
   console.log("Holding after expand!");
-  setTimeout(function() {
-    playExpand();
-    console.log('We are playing line 96!')
-  }, inhaleHold * 1000);
+
+  // setTimeout(function() {
+  //   playExpand();
+  //   console.log('We are playing line 96!')
+  // }, inhaleHold * 1000);
 
   setTimeout(function() {
     shrink();
@@ -107,6 +105,11 @@ function shrink(end) {
     let circle = getCircle();
     // remove pulse 
     circle.classList.remove("circle-pulse");
+  }
+
+  // if audio is on, play noise
+  if (audioOn) {
+    playShrink();
   }
 
   // Do Shrink Animation
@@ -123,10 +126,6 @@ function shrink(end) {
     return;
   }
 
-  // setTimeout(function() {
-  //   playShrink();
-  //   console.log('We are playing line 128!')
-  // }, exhale * 1000);
 
   setTimeout(function() {
     holdShrink();
@@ -143,6 +142,11 @@ function holdShrink() {
     let circle = getCircle();
     circle.classList.add("circle-pulse");
   }
+   // if audio is on, play noise
+   if (audioOn) {
+    playShrinkHold();
+  }
+
   console.log("Holding after shrink!");
 
   if (shouldEnd()) {
@@ -172,14 +176,28 @@ function getActionText() {
 // sound1.src = 'sound1.mp3';
 
 function playExpand() {
-  return document.getElementById('sound1').play();
+  let expandSound = document.getElementById('sound1');
+  expandSound.play();
+  setTimeout(function() {expandSound.pause();}, inhale * 1000)
 }
 
 function playShrink() {
-  return document.getElementById('sound2').play();
+  let shrinkSound = document.getElementById('sound2');
+  shrinkSound.play();
+  setTimeout(function() {shrinkSound.pause();}, exhale * 1000)
+  // return document.getElementById('sound2').play();
 }
 
-// set timeout function to match audio with task
-// setTime(() => {
-//   document.getElementById('sound1').play();
-// }, inhale * 1000)
+function playExpandHold() {
+  let expandHoldSound = document.getElementById('sheep1');
+  expandHoldSound.play();
+  setTimeout(function() {expandHoldSound.pause();}, exhaleHold * 1000)
+  // return document.getElementById('sheep1').play();
+}
+
+function playShrinkHold() {
+  let shrinkHoldSound = document.getElementById('space1');
+  shrinkHoldSound.play();
+  setTimeout(function() {shrinkHoldSound.pause();}, inhaleHold * 1000)
+  // return document.getElementById('space1').play();
+}
