@@ -47,7 +47,6 @@ function expand() {
   circle.style.width = "40vh";
   circle.style.transition = "all " + inhale + "s ease";
   console.log("Expanding!");
- 
 
   // Make the circle expand
   setTimeout(function() {
