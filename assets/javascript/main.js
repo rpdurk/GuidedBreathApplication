@@ -1,3 +1,17 @@
+// Audio Files
+// Add checkbox for audio playbacks
+// get files for audio
+// add function to play audio based on time of action
+// loop through audio files over 1 second or play audiofile for a specific amount of time.
+// trigger audio play for each step
+// let audioFiles = [
+//   sound1 = '../audio/sound1.mp3',
+//   sound2 = '../audio/sound2.mp3',
+//   inhale = '../audio/Inhale.m4a',
+//   exhale = '../audio/Exhale.m4a',
+//   hold = '../audio/Hold.m4a',
+// ];
+
 let endTime = 0;
 
 let inhale = 0;
@@ -49,6 +63,11 @@ function expand() {
   setTimeout(function() {
     holdExpand();
   }, inhale * 1000);
+
+  setTimeout(function() {
+    sound1.play();
+  }, inhale * 1000);
+
 }
 
 function holdExpand() {
@@ -131,4 +150,18 @@ function getCircle() {
 
 function getActionText() {
   return document.getElementById('actionText');
+}
+
+var sound1;
+function preload(){
+  sound1 = loadSound('../audio/sound1.mp3');
+
+}
+
+function playSound(e) {
+  sound1.play();
+  // const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+  // if (!audio) return;
+  // key.classList.add('playing');
+  // audio.play();
 }
