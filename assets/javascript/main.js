@@ -170,33 +170,29 @@ function getActionText() {
   return document.getElementById('actionText');
 }
 
-/**sound function********************************************** */
-// next two lines didn't work????
-// var sound1 = new Audio();
-// sound1.src = 'sound1.mp3';
-
 function playExpand() {
-  let expandSound = document.getElementById('sound1');
+  let expandSound = document.getElementById('inhale');
   expandSound.play();
   setTimeout(function() {expandSound.pause();}, inhale * 1000)
 }
 
 function playShrink() {
-  let shrinkSound = document.getElementById('sound2');
+  let shrinkSound = document.getElementById('exhale');
   shrinkSound.play();
   setTimeout(function() {shrinkSound.pause();}, exhale * 1000)
   // return document.getElementById('sound2').play();
 }
 
 function playExpandHold() {
-  let expandHoldSound = document.getElementById('sheep1');
+  let expandHoldSound = document.getElementById('hold');
   expandHoldSound.play();
   setTimeout(function() {expandHoldSound.pause();}, exhaleHold * 1000)
   // return document.getElementById('sheep1').play();
 }
 
+// need a parameter in case there is no hold and nothing plays!!!!!!!!!
 function playShrinkHold() {
-  let shrinkHoldSound = document.getElementById('space1');
+  let shrinkHoldSound = document.getElementById('hold');
   shrinkHoldSound.play();
   setTimeout(function() {shrinkHoldSound.pause();}, inhaleHold * 1000)
   // return document.getElementById('space1').play();
