@@ -42,7 +42,7 @@ function expand() {
   let circle = getCircle();
   circle.style.height = "40vh";
   circle.style.width = "40vh";
-  circle.style.transition = "all " + inhale + "s ease";
+  circle.style.transition = "all " + inhale + "s linear";
   console.log("Expanding!");
 
   // Make the circle expand
@@ -89,7 +89,7 @@ function shrink(end) {
   let circle = getCircle();
   circle.style.height = "30vh";
   circle.style.width = "30vh";
-  circle.style.transition = "all " + exhale + "s ease";
+  circle.style.transition = "all " + exhale + "s linear";
   
   if (end || shouldEnd()) {
     return;
