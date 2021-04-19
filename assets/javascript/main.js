@@ -31,13 +31,14 @@ function expand() {
     shrink(true);
   }
   // If exhaleHold Animation was done, remove during exhale animation
-  // if (exhaleHold > 0) {
-  //   let circle = getCircle();
+  if (exhaleHold > 0) {
+    let circle = getCircle();
+    circle.classList.remove("circle-pulse");
   //   // console.log("I was activated!")
   //   circle.style.border = "0px solid #0da2ff";
   //   circle.style.transition.timingFunction = "cubic-bezier(0, 1.83, 1, -1.13)";
   //   // circle.style.transition.timingFunction = "step-start";
-  // }
+  }
   // display text
   let actionText = getActionText();
   actionText.innerHTML = "Inhale";
@@ -64,11 +65,16 @@ function holdExpand() {
     // display text
     let actionText = getActionText();
     actionText.innerHTML = "Hold";
-    // let circle = getCircle();
+    let circle = getCircle();
     // original animation
     // circle.style.border = "15px solid rgb(89, 191, 255, .5)";
     // circle.style.transition.timingFunction = "ease-in-out";
     // attempt at a pulse
+
+    // element.classList.add("my-class");
+    // element.classList.remove("my-class");
+
+    circle.classList.add("circle-pulse");
     // circle.style.animation = "pulse 1500ms infinite";
   }
   
@@ -83,8 +89,12 @@ function shrink(end) {
   // If inhaleHold Animation was done, remove during exhale animation
   if (inhaleHold > 0) {
     let circle = getCircle();
+    // remove border from hold
     circle.style.border = "0px solid #0da2ff";
     circle.style.transition.timingFunction = "cubic-bezier(0, 1.83, 1, -1.13)";
+    // remove pulse 
+    circle.classList.remove("circle-pulse");
+    // circle.style.animation = "none";
   }
 
   // Do Shrink Animation
@@ -113,7 +123,8 @@ function holdShrink() {
     let actionText = getActionText();
     actionText.innerHTML = "Hold";
     // animation for exhaleHold
-    // let circle = getCircle();
+    let circle = getCircle();
+    circle.classList.add("circle-pulse");
     // console.log('animation to hold during exhale activated!');
     // circle.style.border = "-15px solid rgb(232, 255, 255, .5)";
     // circle.style.transition.timingFunction = "ease-in-out";
