@@ -1,3 +1,17 @@
+// Audio Files
+// Add checkbox for audio playbacks
+// get files for audio
+// add function to play audio based on time of action
+// loop through audio files over 1 second or play audiofile for a specific amount of time.
+// trigger audio play for each step
+// let audioFiles = [
+//   sound1 = '../audio/sound1.mp3',
+//   sound2 = '../audio/sound2.mp3',
+//   inhale = '../audio/Inhale.m4a',
+//   exhale = '../audio/Exhale.m4a',
+//   hold = '../audio/Hold.m4a',
+// ];
+
 let endTime = 0;
 
 let inhale = 0;
@@ -30,6 +44,10 @@ function expand() {
   if (shouldEnd()) {
     shrink(true);
   }
+  // if audio is on, play noise
+  if (audioOn) {
+      playExpand();
+  }
   // If exhaleHold Animation was done, remove during exhale animation
   if (exhaleHold > 0) {
     let circle = getCircle();
@@ -55,6 +73,10 @@ function holdExpand() {
   if (shouldEnd()) {
     shrink(true);
   }
+   // if audio is on, play noise
+   if (audioOn) {
+      playExpandHold();
+  }
 
   // do hold animation for inhale hold
   if (inhaleHold > 0) {
@@ -65,9 +87,13 @@ function holdExpand() {
     let circle = getCircle();
     circle.classList.add("circle-pulse");
   }
-  
   console.log("Holding after expand!");
-  
+
+  // setTimeout(function() {
+  //   playExpand();
+  //   console.log('We are playing line 96!')
+  // }, inhaleHold * 1000);
+
   setTimeout(function() {
     shrink();
   }, inhaleHold * 1000);
@@ -79,6 +105,11 @@ function shrink(end) {
     let circle = getCircle();
     // remove pulse 
     circle.classList.remove("circle-pulse");
+  }
+
+  // if audio is on, play noise
+  if (audioOn) {
+    playShrink();
   }
 
   // Do Shrink Animation
@@ -95,6 +126,7 @@ function shrink(end) {
     return;
   }
 
+
   setTimeout(function() {
     holdShrink();
   }, exhale * 1000);
@@ -110,6 +142,11 @@ function holdShrink() {
     let circle = getCircle();
     circle.classList.add("circle-pulse");
   }
+   // if audio is on, play noise
+   if (audioOn) {
+    playShrinkHold();
+  }
+
   console.log("Holding after shrink!");
 
   if (shouldEnd()) {
@@ -131,4 +168,32 @@ function getCircle() {
 
 function getActionText() {
   return document.getElementById('actionText');
+}
+
+function playExpand() {
+  let expandSound = document.getElementById('inhale');
+  expandSound.play();
+  setTimeout(function() {expandSound.pause();}, inhale * 1000)
+}
+
+function playShrink() {
+  let shrinkSound = document.getElementById('exhale');
+  shrinkSound.play();
+  setTimeout(function() {shrinkSound.pause();}, exhale * 1000)
+  // return document.getElementById('sound2').play();
+}
+
+function playExpandHold() {
+  let expandHoldSound = document.getElementById('hold');
+  expandHoldSound.play();
+  setTimeout(function() {expandHoldSound.pause();}, exhaleHold * 1000)
+  // return document.getElementById('sheep1').play();
+}
+
+// need a parameter in case there is no hold and nothing plays!!!!!!!!!
+function playShrinkHold() {
+  let shrinkHoldSound = document.getElementById('hold');
+  shrinkHoldSound.play();
+  setTimeout(function() {shrinkHoldSound.pause();}, inhaleHold * 1000)
+  // return document.getElementById('space1').play();
 }
