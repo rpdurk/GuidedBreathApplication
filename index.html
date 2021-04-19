@@ -6,7 +6,9 @@
     <!-- <link rel="stylesheet" href="assets/css/canvasStyle.css"> -->
     <link rel="stylesheet" href="assets/css/sliderStyle.css">
     <link rel="stylesheet" href="assets/css/navStyle.css">
+    <link rel="stylesheet" href="assets/css/switchStyle.css">
     <link rel="stylesheet" href="assets/css/circleStyle.css">
+
   </head>
   <body>
     <div class="container">
@@ -43,6 +45,13 @@
           <input type="range" min="1" max="60" value="20" class="slider" id="durationValue">
           </div>
       </a>
+      <a>
+        <h6>Audio</h6>
+        <label class="switch"> 
+          <input type="checkbox">
+          <span onclick="toggleAudio()" value="false" id="switchValue" class="sliderSwitch round"></span>
+        </label>
+      </a>
     </div>
     <!-- end of side bar -->
     <!-- start of directions -->
@@ -65,13 +74,11 @@
     </div>
   </div>
   <!-- audio files -->
-  <!-- <audio data-key='inhale' src="/assets/audio/Hold.m4a"></audio>
-  <audio data-key='exhale' src="/assets/audio/Exhale.m4a"></audio>
-  <audio data-key='hold' src="/assets/audio/Inhale.m4a"></audio> -->
-  <audio data-key='sound1' src="/assets/audio/sound1.mp3"></audio>
-  <audio data-key='sound2' src="/assets/audio/sound2.mp3"></audio>
+  <audio id="sound1" src="assets/audio/sound1.mp3"></audio>
+  <audio id="sound2" src="assets/audio/sound2.mp3"></audio>
 
     <script src="./assets/javascript/navScript.js"></script>
+    <script src="./assets/javascript/toggleAudio.js"></script>
     <script src="./assets/javascript/breathSelectionScript.js"></script>
     <script src="./assets/javascript/main.js"></script>
   </body>

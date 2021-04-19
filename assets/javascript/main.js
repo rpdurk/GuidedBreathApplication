@@ -38,6 +38,10 @@ function start() {
   endTime = new Date((new Date()).getTime() + (duration * 60 * 1000));
 
   expand();
+  // need logic to only play if sound is toggled on
+  // if (soundOn()) {
+  //   playExpand(true);
+  // }
 }
 
 function expand() {
@@ -59,15 +63,16 @@ function expand() {
   circle.style.transition = "all " + inhale + "s linear";
   console.log("Expanding!");
 
+  // Sound for expanding only during Expanding
+  // setTimeout(function() {
+  //   playExpand();
+  // }, inhale * 1000);
+  
+
   // Make the circle expand
   setTimeout(function() {
     holdExpand();
   }, inhale * 1000);
-
-  setTimeout(function() {
-    sound1.play();
-  }, inhale * 1000);
-
 }
 
 function holdExpand() {
@@ -86,7 +91,11 @@ function holdExpand() {
   }
   
   console.log("Holding after expand!");
-  
+  setTimeout(function() {
+    playExpand();
+    console.log('We are playing line 96!')
+  }, inhaleHold * 1000);
+
   setTimeout(function() {
     shrink();
   }, inhaleHold * 1000);
@@ -113,6 +122,11 @@ function shrink(end) {
   if (end || shouldEnd()) {
     return;
   }
+
+  // setTimeout(function() {
+  //   playShrink();
+  //   console.log('We are playing line 128!')
+  // }, exhale * 1000);
 
   setTimeout(function() {
     holdShrink();
@@ -152,16 +166,20 @@ function getActionText() {
   return document.getElementById('actionText');
 }
 
-var sound1;
-function preload(){
-  sound1 = loadSound('../audio/sound1.mp3');
+/**sound function********************************************** */
+// next two lines didn't work????
+// var sound1 = new Audio();
+// sound1.src = 'sound1.mp3';
 
+function playExpand() {
+  return document.getElementById('sound1').play();
 }
 
-function playSound(e) {
-  sound1.play();
-  // const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
-  // if (!audio) return;
-  // key.classList.add('playing');
-  // audio.play();
+function playShrink() {
+  return document.getElementById('sound2').play();
 }
+
+// set timeout function to match audio with task
+// setTime(() => {
+//   document.getElementById('sound1').play();
+// }, inhale * 1000)
