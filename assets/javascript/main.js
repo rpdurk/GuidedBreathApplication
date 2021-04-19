@@ -64,10 +64,10 @@ function holdExpand() {
     // display text
     let actionText = getActionText();
     actionText.innerHTML = "Hold";
-    let circle = getCircle();
+    // let circle = getCircle();
     // original animation
-    circle.style.border = "15px solid rgb(89, 191, 255, .5)";
-    circle.style.transition.timingFunction = "ease-in-out";
+    // circle.style.border = "15px solid rgb(89, 191, 255, .5)";
+    // circle.style.transition.timingFunction = "ease-in-out";
     // attempt at a pulse
     // circle.style.animation = "pulse 1500ms infinite";
   }
@@ -113,10 +113,10 @@ function holdShrink() {
     let actionText = getActionText();
     actionText.innerHTML = "Hold";
     // animation for exhaleHold
-    let circle = getCircle();
-    console.log('animation to hold during exhale activated!');
-    circle.style.border = "-15px solid rgb(232, 255, 255, .5)";
-    circle.style.transition.timingFunction = "ease-in-out";
+    // let circle = getCircle();
+    // console.log('animation to hold during exhale activated!');
+    // circle.style.border = "-15px solid rgb(232, 255, 255, .5)";
+    // circle.style.transition.timingFunction = "ease-in-out";
   }
   console.log("Holding after shrink!");
 
