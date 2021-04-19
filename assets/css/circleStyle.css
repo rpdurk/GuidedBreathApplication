@@ -33,10 +33,7 @@ body {
 .circleContainer {
   width: 100%;
   height: calc(100% - 307px);
-  background-color: #f0f8ff;
 }
-
-
 
 .circle {
   height: 30vh;
