@@ -12,15 +12,15 @@ body {
   font-size: 60px;
   color: #f0f8ff;
   align-items: center;
-  position: relative;
+  position: absolute;
   left: 50%;
   top: 50%;
   -webkit-transform: translate(-50%, -100%);
-  transform: translate(-50%, -100%);
+  transform: translate(-50%, 100%);
   text-align: center;
   font-weight: strong;
+  z-index: 11;
 }
-
 .container {
   height: 100%;
 }
@@ -33,7 +33,6 @@ body {
 .circleContainer {
   width: 100%;
   height: calc(100% - 307px);
-  background-color: #f0f8ff;
 }
 
 .circle {
@@ -52,6 +51,40 @@ body {
   animation: none;
 }
 
+.circle::before,
+.circle::after {
+  opacity: 0;
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  border-radius: 50%;
+}
+
+.circle::before {
+  content: " ";
+  font-weight: 900;
+  font-size: 2em;
+  background: #0da2ff;
+  display: grid;
+  place-items: center;
+  z-index: 10;
+  transition: opacity 75ms linear, background-color 100ms linear;
+}
+
+.circle-pulse::before {
+  background: #0da2ff;
+}
+
+.circle-pulse::after {
+  background: #0da2ff;
+  z-index: 1;
+  /* 1000ms is pulsing at a rate of 1 second */
+  animation: pulse 1000ms infinite;
+}
+
 /* pulse animation */
 @keyframes pulse {
   0% {
@@ -59,7 +92,8 @@ body {
     opacity:0.75;
   }
   100% {
-    transform: scale(1.35);
+    /* scale will adjust how big the pulse is */
+    transform: scale(1.25);
     opacity:0;
   }
 }

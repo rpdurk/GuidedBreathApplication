@@ -31,13 +31,10 @@ function expand() {
     shrink(true);
   }
   // If exhaleHold Animation was done, remove during exhale animation
-  // if (exhaleHold > 0) {
-  //   let circle = getCircle();
-  //   // console.log("I was activated!")
-  //   circle.style.border = "0px solid #0da2ff";
-  //   circle.style.transition.timingFunction = "cubic-bezier(0, 1.83, 1, -1.13)";
-  //   // circle.style.transition.timingFunction = "step-start";
-  // }
+  if (exhaleHold > 0) {
+    let circle = getCircle();
+    circle.classList.remove("circle-pulse");
+  }
   // display text
   let actionText = getActionText();
   actionText.innerHTML = "Inhale";
@@ -45,7 +42,7 @@ function expand() {
   let circle = getCircle();
   circle.style.height = "40vh";
   circle.style.width = "40vh";
-  circle.style.transition = "all " + inhale + "s ease";
+  circle.style.transition = "all " + inhale + "s linear";
   console.log("Expanding!");
 
   // Make the circle expand
@@ -64,12 +61,9 @@ function holdExpand() {
     // display text
     let actionText = getActionText();
     actionText.innerHTML = "Hold";
-    // let circle = getCircle();
-    // original animation
-    // circle.style.border = "15px solid rgb(89, 191, 255, .5)";
-    // circle.style.transition.timingFunction = "ease-in-out";
-    // attempt at a pulse
-    // circle.style.animation = "pulse 1500ms infinite";
+    // hold animation
+    let circle = getCircle();
+    circle.classList.add("circle-pulse");
   }
   
   console.log("Holding after expand!");
@@ -83,8 +77,8 @@ function shrink(end) {
   // If inhaleHold Animation was done, remove during exhale animation
   if (inhaleHold > 0) {
     let circle = getCircle();
-    circle.style.border = "0px solid #0da2ff";
-    circle.style.transition.timingFunction = "cubic-bezier(0, 1.83, 1, -1.13)";
+    // remove pulse 
+    circle.classList.remove("circle-pulse");
   }
 
   // Do Shrink Animation
@@ -95,7 +89,7 @@ function shrink(end) {
   let circle = getCircle();
   circle.style.height = "30vh";
   circle.style.width = "30vh";
-  circle.style.transition = "all " + exhale + "s ease";
+  circle.style.transition = "all " + exhale + "s linear";
   
   if (end || shouldEnd()) {
     return;
@@ -113,10 +107,8 @@ function holdShrink() {
     let actionText = getActionText();
     actionText.innerHTML = "Hold";
     // animation for exhaleHold
-    // let circle = getCircle();
-    // console.log('animation to hold during exhale activated!');
-    // circle.style.border = "-15px solid rgb(232, 255, 255, .5)";
-    // circle.style.transition.timingFunction = "ease-in-out";
+    let circle = getCircle();
+    circle.classList.add("circle-pulse");
   }
   console.log("Holding after shrink!");
 
