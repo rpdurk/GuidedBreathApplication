@@ -51,6 +51,11 @@ body {
   animation: none;
 }
 
+.circleLarge {
+  height: 40vh;
+  width: 40vh;
+}
+
 .circle::before,
 .circle::after {
   opacity: 0;

@@ -18,8 +18,14 @@ function start() {
   // Clear all animations
   let circle = getCircle();
   // remove hold animation
+  // circle.style.removeProperty('transition');
+  circle.removeAttribute('style');
   circle.classList.remove("circle-pulse");
-
+  // remove inhale animation at start
+  circle.classList.remove("circleLarge");
+  // remove text animation
+  let actionText = getActionText();
+  actionText.innerHTML = " ";
   // Reset timeouts array
   timeouts = [];
 
@@ -40,8 +46,10 @@ function start() {
 
   // Reset timer
   endTime = new Date((new Date()).getTime() + (duration * 60 * 1000));
-
-  expand();
+  const timeout = setTimeout(function() {
+    expand();
+  }, 1000);
+  timeouts.push(timeout);
 }
 
 function expand() {
@@ -63,9 +71,8 @@ function expand() {
   actionText.innerHTML = "Inhale";
   // do animation for inhale
   let circle = getCircle();
-  circle.style.height = "40vh";
-  circle.style.width = "40vh";
   circle.style.transition = "all " + inhale + "s linear";
+  circle.classList.add("circleLarge");
   console.log("Expanding!");
 
   const timeout = setTimeout(function() {
@@ -105,11 +112,9 @@ function shrink(end) {
 
   let actionText = getActionText();
   actionText.innerHTML = "Exhale";
-  
   let circle = getCircle();
-  circle.style.height = "30vh";
-  circle.style.width = "30vh";
   circle.style.transition = "all " + exhale + "s linear";
+  circle.classList.remove("circleLarge");
   console.log("Shrinking!");
 
   if (end || shouldEnd()) {
