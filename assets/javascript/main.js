@@ -1,4 +1,5 @@
 let endTime = 0;
+let timeouts = [];
 
 let inhale = 0;
 let inhaleHold = 0;
@@ -7,6 +8,14 @@ let exhaleHold = 0;
 let duration = 0;
 
 function start() {
+  // Clear all timeouts
+  timeouts.forEach(timeout => {
+    clearTimeout(timeout);
+  });
+
+  // Reset timeouts array
+  timeouts = [];
+
   // Get values
   // Time to expand
   inhale = parseInt(document.getElementById('chosenInhale').innerHTML);
@@ -52,9 +61,10 @@ function expand() {
   circle.style.transition = "all " + inhale + "s linear";
   console.log("Expanding!");
 
-  setTimeout(function() {
+  const timeout = setTimeout(function() {
     holdExpand();
   }, inhale * 1000);
+  timeouts.push(timeout);
 }
 
 function holdExpand() {
@@ -72,9 +82,10 @@ function holdExpand() {
   }
   console.log("Holding after expand!");
 
-  setTimeout(function() {
+  const timeout = setTimeout(function() {
     shrink();
   }, inhaleHold * 1000);
+  timeouts.push(timeout);
 }
 
 function shrink(end) {
@@ -98,9 +109,10 @@ function shrink(end) {
     return;
   }
 
-  setTimeout(function() {
+  const timeout = setTimeout(function() {
     holdShrink();
   }, exhale * 1000);
+  timeouts.push(timeout);
 }
 
 function holdShrink() {
@@ -119,9 +131,10 @@ function holdShrink() {
     shrink(true);
   }
 
-  setTimeout(function() {
+  const timeout = setTimeout(function() {
     expand();
   }, exhaleHold * 1000);
+  timeouts.push(timeout);
 }
 
 function shouldEnd() {
@@ -149,36 +162,49 @@ function getActionText() {
 
 function playExpand() {
   let expandSound = document.getElementById('inhale');
+  // const expandSound = new Audio('../audio/inhaleBrit.mp3);
   if(audioOn) {
+    expandSound.load();
     expandSound.play();
     console.log('I Said Inhale!');
   }
-  setTimeout(function() {expandSound.pause();}, inhale * 1000)
+  setTimeout(function() {
+    expandSound.pause();
+  }, inhale * 1000)
 }
 
 function playExpandHold() {
   let expandHoldSound = document.getElementById('hold1');
   if(audioOn && inhaleHold > 0) {
+    expandHoldSound.load();
     expandHoldSound.play();
     console.log('I Said Inhale Hold!');
   }
-  setTimeout(function() {expandHoldSound.pause();}, inhaleHold * 1000)
+  setTimeout(function() {
+    expandHoldSound.pause();
+  }, inhaleHold * 1000)
 }
 
 function playShrink() {
   let shrinkSound = document.getElementById('exhale');
   if(audioOn) {
+    shrinkSound.load();
     shrinkSound.play();
     console.log('I Said Exhale!');
   }
-  setTimeout(function() {shrinkSound.pause();}, exhale * 1000)
+  setTimeout(function() {
+    shrinkSound.pause();
+  }, exhale * 1000)
 }
 
 function playShrinkHold() {
   let shrinkHoldSound = document.getElementById('hold2');
   if(audioOn && exhaleHold > 0) {
+    shrinkHoldSound.load();
     shrinkHoldSound.play();
     console.log('I Said Exhale Hold!');
   }
-  setTimeout(function() {shrinkHoldSound.pause();}, exhaleHold * 1000)
+  setTimeout(function() {
+    shrinkHoldSound.pause();
+  }, exhaleHold * 1000)
 }
