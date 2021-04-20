@@ -1,3 +1,11 @@
+/**
+ * Make an Animation to say ready, set go
+ * Create an End Animation
+ * Refactor Audio Clips based on examples
+ * Refactor reset into a function
+ * Alter 1 circle to 6 (blossoming flower) & pulse to rotation
+ */
+
 let endTime = 0;
 let timeouts = [];
 
