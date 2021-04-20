@@ -31,10 +31,8 @@ function expand() {
     shrink(true);
   }
 
-  // if audio is on, play noise
-  if (audioOn) {
-      playExpand();
-  }
+  // call audio sound function
+  playExpand();
 
   // If exhaleHold Animation was done, remove during exhale animation
   if (exhaleHold > 0) {
@@ -62,9 +60,7 @@ function holdExpand() {
     shrink(true);
   }
 
-  if (audioOn && inhaleHold > 0) {
-    playExpandHold();
-  }
+  playExpandHold();
 
   if (inhaleHold > 0) {
     let actionText = getActionText();
@@ -85,9 +81,7 @@ function shrink(end) {
     circle.classList.remove("circle-pulse");
   }
 
-  if (audioOn) {
-    playShrink();
-  }
+  playShrink();
 
   let actionText = getActionText();
   actionText.innerHTML = "Exhale";
@@ -117,9 +111,7 @@ function holdShrink() {
 
   console.log("Holding after shrink!");
 
-   if (audioOn && exhaleHold > 0) {
-    playShrinkHold();
-  }
+  playShrinkHold();
 
   if (shouldEnd()) {
     shrink(true);
@@ -144,24 +136,36 @@ function getActionText() {
 
 function playExpand() {
   let expandSound = document.getElementById('inhale');
-  expandSound.play();
+  if(audioOn) {
+    expandSound.play();
+    console.log('I Said Inhale!');
+  }
   setTimeout(function() {expandSound.pause();}, inhale * 1000)
-}
-
-function playShrink() {
-  let shrinkSound = document.getElementById('exhale');
-  shrinkSound.play();
-  setTimeout(function() {shrinkSound.pause();}, exhale * 1000)
 }
 
 function playExpandHold() {
   let expandHoldSound = document.getElementById('hold1');
-  expandHoldSound.play();
-  setTimeout(function() {expandHoldSound.pause();}, exhaleHold * 1000)
+  if(audioOn && inhaleHold > 0) {
+    expandHoldSound.play();
+    console.log('I Said Inhale Hold!');
+  }
+  setTimeout(function() {expandHoldSound.pause();}, inhaleHold * 1000)
+}
+
+function playShrink() {
+  let shrinkSound = document.getElementById('exhale');
+  if(audioOn) {
+    shrinkSound.play();
+    console.log('I Said Exhale!');
+  }
+  setTimeout(function() {shrinkSound.pause();}, exhale * 1000)
 }
 
 function playShrinkHold() {
   let shrinkHoldSound = document.getElementById('hold2');
-  shrinkHoldSound.play();
-  setTimeout(function() {shrinkHoldSound.pause();}, inhaleHold * 1000)
+  if(audioOn && exhaleHold > 0) {
+    shrinkHoldSound.play();
+    console.log('I Said Exhale Hold!');
+  }
+  setTimeout(function() {shrinkHoldSound.pause();}, exhaleHold * 1000)
 }
