@@ -8,10 +8,17 @@ let exhaleHold = 0;
 let duration = 0;
 
 function start() {
+  // Reset animation classes
+
   // Clear all timeouts
   timeouts.forEach(timeout => {
     clearTimeout(timeout);
   });
+
+  // Clear all animations
+  let circle = getCircle();
+  // remove hold animation
+  circle.classList.remove("circle-pulse");
 
   // Reset timeouts array
   timeouts = [];
