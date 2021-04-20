@@ -20,6 +20,8 @@ function start() {
   duration = parseInt(document.getElementById('chosenDuration').innerHTML);
   console.log(inhale, inhaleHold, exhale, exhaleHold, duration);
 
+  // elapsedTime();
+
   // Reset timer
   endTime = new Date((new Date()).getTime() + (duration * 60 * 1000));
 
@@ -125,6 +127,17 @@ function holdShrink() {
 function shouldEnd() {
   return (new Date()) > endTime;
 }
+
+// function elapsedTime() {
+//   startTime = Date.now();
+//   var elapsedTime = Date.now() - startTime;
+//   var minutes = Math.floor((elapsedTime % (1000 * 60 * 60)) / (1000 * 60));
+//   var seconds = Math.floor((elapsedTime % (1000 * 60)) / 1000);
+//   actualElapsedTime = setInterval(function() {
+//   document.getElementById('elapsedTime').innerHTML = minutes +':' + seconds;
+//   }, 1000);
+//   return actualElapsedTime;
+// }
 
 function getCircle() {
   return document.getElementById('circle');
