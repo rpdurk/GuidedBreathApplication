@@ -1,7 +1,6 @@
 /**
  * Make an Animation to say ready, set go
  * Create an End Animation
- * Refactor Audio Clips based on examples
  * Refactor reset into a function
  * Alter 1 circle to 6 (blossoming flower) & pulse to rotation
  */
@@ -196,10 +195,6 @@ function getActionText() {
 }
 
 function playExpand() {
-  /**Line 185 works!!!! */
-  // let expandSound = document.getElementById('inhale');
-  /**Confirm lines 187-188 are appropriate and not creating unnecessary amount of audio elements? */
-  // this way does not allow inhale to work on the first breath, is it a load issue?
   const expandSound = document.createElement('audio');
   expandSound.src ='assets/audio/inhaleBrit.mp3';
   if(audioOn) {
