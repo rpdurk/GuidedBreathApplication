@@ -83,6 +83,10 @@ body {
   background: #0da2ff;
 }
 
+.circlePurple {
+  background-color: #DB70DB;
+}
+
 .circle-pulse::after {
   background: #0da2ff;
   z-index: 1;

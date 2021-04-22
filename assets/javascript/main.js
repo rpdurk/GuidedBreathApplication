@@ -26,9 +26,11 @@ function start() {
   // Clear all animations
   let circle = getCircle();
   // remove hold animation
-  // circle.style.removeProperty('transition');
   circle.removeAttribute('style');
+  // remove pulse if applied
   circle.classList.remove("circle-pulse");
+  // remove purple if applied
+  circle.classList.remove("circlePurple");
   // remove inhale animation at start
   circle.classList.remove("circleLarge");
   // remove text animation
@@ -72,11 +74,12 @@ function expand() {
   if (exhaleHold > 0) {
     let circle = getCircle();
     circle.classList.remove("circle-pulse");
+    circle.classList.remove("circlePurple");
   }
 
   // display text
   let actionText = getActionText();
-  actionText.innerHTML = "Inhale";
+  actionText.innerHTML = "inhale";
   // do animation for inhale
   let circle = getCircle();
   circle.style.transition = "all " + inhale + "s linear";
@@ -98,9 +101,14 @@ function holdExpand() {
 
   if (inhaleHold > 0) {
     let actionText = getActionText();
-    actionText.innerHTML = "Hold";
+    actionText.innerHTML = "hold";
     let circle = getCircle();
+  }
+  if (inhaleHold > 0 && pulseOn) {
     circle.classList.add("circle-pulse");
+  }
+  if (inhaleHold > 0 && colorOn) {
+    circle.classList.add("circlePurple");
   }
   console.log("Holding after expand!");
 
@@ -114,12 +122,13 @@ function shrink(end) {
   if (inhaleHold > 0) {
     let circle = getCircle();
     circle.classList.remove("circle-pulse");
+    circle.classList.remove("circlePurple");
   }
 
   playShrink();
 
   let actionText = getActionText();
-  actionText.innerHTML = "Exhale";
+  actionText.innerHTML = "exhale";
   let circle = getCircle();
   circle.style.transition = "all " + exhale + "s linear";
   circle.classList.remove("circleLarge");
@@ -138,11 +147,15 @@ function shrink(end) {
 function holdShrink() {
    if (exhaleHold > 0) {
     let actionText = getActionText();
-    actionText.innerHTML = "Hold";
+    actionText.innerHTML = "hold";
     let circle = getCircle();
+  }
+  if (exhaleHold > 0 && pulseOn) {
     circle.classList.add("circle-pulse");
   }
-
+  if (exhaleHold > 0 && colorOn) {
+    circle.classList.add("circlePurple");
+  }
   console.log("Holding after shrink!");
 
   playShrinkHold();
@@ -181,12 +194,16 @@ function getActionText() {
 }
 
 function playExpand() {
-  let expandSound = document.getElementById('inhale');
-  // const expandSound = new Audio('../audio/inhaleBrit.mp3);
+  /**Line 185 works!!!! */
+  // let expandSound = document.getElementById('inhale');
+  /**Confirm lines 187-188 are appropriate and not creating unnecessary amount of audio elements? */
+  // this way does not allow inhale to work on the first breath, is it a load issue?
+  const expandSound = document.createElement('audio');
+  expandSound.src ='assets/audio/inhaleBrit.mp3';
   if(audioOn) {
     expandSound.load();
     expandSound.play();
-    console.log('I Said Inhale!');
+    // console.log('I Said Inhale!');
   }
   setTimeout(function() {
     expandSound.pause();
@@ -194,11 +211,13 @@ function playExpand() {
 }
 
 function playExpandHold() {
-  let expandHoldSound = document.getElementById('hold1');
+  // let expandHoldSound = document.getElementById('hold1');
+  const expandHoldSound = document.createElement('audio');
+  expandHoldSound.src ='assets/audio/holdBrit.mp3';
   if(audioOn && inhaleHold > 0) {
     expandHoldSound.load();
     expandHoldSound.play();
-    console.log('I Said Inhale Hold!');
+    // console.log('I Said Inhale Hold!');
   }
   setTimeout(function() {
     expandHoldSound.pause();
@@ -206,11 +225,13 @@ function playExpandHold() {
 }
 
 function playShrink() {
-  let shrinkSound = document.getElementById('exhale');
+  // let shrinkSound = document.getElementById('exhale');
+  const shrinkSound  = document.createElement('audio');
+  shrinkSound.src ='assets/audio/exhaleBrit.mp3';
   if(audioOn) {
     shrinkSound.load();
     shrinkSound.play();
-    console.log('I Said Exhale!');
+    // console.log('I Said Exhale!');
   }
   setTimeout(function() {
     shrinkSound.pause();
@@ -218,11 +239,13 @@ function playShrink() {
 }
 
 function playShrinkHold() {
-  let shrinkHoldSound = document.getElementById('hold2');
+  // let shrinkHoldSound = document.getElementById('hold2');
+  const shrinkHoldSound = document.createElement('audio');
+  shrinkHoldSound.src ='assets/audio/holdBrit.mp3';
   if(audioOn && exhaleHold > 0) {
     shrinkHoldSound.load();
     shrinkHoldSound.play();
-    console.log('I Said Exhale Hold!');
+    // console.log('I Said Exhale Hold!');
   }
   setTimeout(function() {
     shrinkHoldSound.pause();
