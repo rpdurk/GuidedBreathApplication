@@ -102,12 +102,13 @@ function holdExpand() {
   if (inhaleHold > 0) {
     let actionText = getActionText();
     actionText.innerHTML = "hold";
-    let circle = getCircle();
   }
   if (inhaleHold > 0 && pulseOn) {
+    let circle = getCircle();
     circle.classList.add("circle-pulse");
   }
   if (inhaleHold > 0 && colorOn) {
+    let circle = getCircle();
     circle.classList.add("circlePurple");
   }
   console.log("Holding after expand!");
@@ -148,12 +149,13 @@ function holdShrink() {
    if (exhaleHold > 0) {
     let actionText = getActionText();
     actionText.innerHTML = "hold";
-    let circle = getCircle();
   }
   if (exhaleHold > 0 && pulseOn) {
+    let circle = getCircle();
     circle.classList.add("circle-pulse");
   }
   if (exhaleHold > 0 && colorOn) {
+    let circle = getCircle();
     circle.classList.add("circlePurple");
   }
   console.log("Holding after shrink!");
