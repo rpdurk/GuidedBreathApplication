@@ -208,7 +208,6 @@ function playExpand() {
 }
 
 function playExpandHold() {
-  // let expandHoldSound = document.getElementById('hold1');
   const expandHoldSound = document.createElement('audio');
   expandHoldSound.src ='assets/audio/holdBrit.mp3';
   if(audioOn && inhaleHold > 0) {
@@ -222,7 +221,6 @@ function playExpandHold() {
 }
 
 function playShrink() {
-  // let shrinkSound = document.getElementById('exhale');
   const shrinkSound  = document.createElement('audio');
   shrinkSound.src ='assets/audio/exhaleBrit.mp3';
   if(audioOn) {
@@ -236,7 +234,6 @@ function playShrink() {
 }
 
 function playShrinkHold() {
-  // let shrinkHoldSound = document.getElementById('hold2');
   const shrinkHoldSound = document.createElement('audio');
   shrinkHoldSound.src ='assets/audio/holdBrit.mp3';
   if(audioOn && exhaleHold > 0) {
