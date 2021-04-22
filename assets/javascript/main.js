@@ -55,6 +55,7 @@ function start() {
 
   // Reset timer
   endTime = new Date((new Date()).getTime() + (duration * 60 * 1000));
+
   const timeout = setTimeout(function() {
     expand();
   }, 1000);
