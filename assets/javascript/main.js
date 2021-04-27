@@ -173,6 +173,7 @@ function holdShrink() {
 }
 
 function shouldEnd() {
+  endAnimation();
   return (new Date()) > endTime;
 }
 
@@ -246,3 +247,11 @@ function playShrinkHold() {
     shrinkHoldSound.pause();
   }, exhaleHold * 1000)
 }
+
+// end animation
+  let endAnimation = endAnimation();
+  endAnimation.innerHTML = "Finished! Have a great Day";
+
+  function endAnimation() {
+    return document.getElementById('actionText');
+  }
