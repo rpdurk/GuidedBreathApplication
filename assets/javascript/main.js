@@ -53,12 +53,12 @@ function start() {
   
   // setInterval(updateCountdown, 1000);
   updateCountdown();
+  // get duration of time set by the user
+   const startingMinutes = duration;
+  // convert duration from minutes to seconds
+  let time = startingMinutes * 60;
   function updateCountdown() {
     setInterval(function(){
-      // get duration of time set by the user
-      const startingMinutes = duration;
-      // convert duration from minutes to seconds
-      let time = startingMinutes * 60;
       // get the element that will show the time
       const countdownEl = document.getElementById('countdown');
       const minutes = Math.floor(time /60);
