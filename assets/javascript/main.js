@@ -173,7 +173,6 @@ function holdShrink() {
 }
 
 function shouldEnd() {
-  endAnimation();
   return (new Date()) > endTime;
 }
 
@@ -248,10 +247,21 @@ function playShrinkHold() {
   }, exhaleHold * 1000)
 }
 
-// end animation
-  let endAnimation = endAnimation();
-  endAnimation.innerHTML = "Finished! Have a great Day";
+// play finished to confirm you are done.
+function playFinished() {
+  const finishedSound = document.createElement('audio');
+  finishedSound.src = 'assets/audio/finishedBrit_F.mp3';
+  finishedSound.load();
+  finishedSound.play();
+}
 
-  function endAnimation() {
+// end animation
+function endAnimation() {
+  let endAnimationText = getEndAnimation();
+  endAnimationText.innerHTML = "Finished!";
+  playFinished();
+}
+
+  function getEndAnimation() {
     return document.getElementById('actionText');
   }
