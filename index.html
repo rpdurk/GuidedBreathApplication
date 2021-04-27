@@ -54,6 +54,13 @@
         </label>
       </a>
       <a>
+        <h6>Show Countdown Timer</h6>
+        <label class="switch"> 
+          <input type="checkbox">
+          <span onclick="toggleCountdown()" value="false" id="switchValue" class="sliderSwitch round"></span>
+        </label>
+      </a>
+      <a>
         <h6>Color Hold Cue</h6>
         <label class="switch"> 
           <input type="checkbox">
@@ -80,7 +87,7 @@
         <ul>3) Customize your experience.</ul>
         <ul>4) Click <a href="#" onclick="start();">start</a> and enjoy!</ul>
       </p>
-      <div class="timer">
+      <div class="timer" id = "countdownDiv">
         <h2>Time Left: <span id='countdown'></span></h2>
         <!-- <h3><a href="#" onclick="shouldEnd();" id='End'>End Early</a></h3> -->
       </div>

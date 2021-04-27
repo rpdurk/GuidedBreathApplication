@@ -18,3 +18,16 @@ function togglePulse() {
     pulseOn = !pulseOn;
     // console.log(pulseOn);
 }
+
+let countdownOn = false;
+
+function toggleCountdown() {
+    countdownOn = !countdownOn;
+    if(!countdownOn){
+        const countdownDiv = document.getElementById("countdownDiv");
+        countdownDiv.style.display = "block";
+    } else {
+        countdownDiv.style.display = "none";
+    }
+    // console.log(countdownOn);
+}
