@@ -195,21 +195,6 @@ function shouldEnd() {
   return (new Date()) > endTime;
 }
 
-// function updateCountdown() {
-//   // get duration of time set by the user
-//   const startingMinutes = duration;
-//   // convert duration from minutes to seconds
-//   let time = startingMinutes * 60;
-//   // get the element that will show the time
-//   const countdownEl = document.getElementById('countdown');
-//   const minutes = Math.floor(time /60);
-//   let seconds = time % 60;
-//   seconds = seconds < 10 ? '0' + seconds : seconds;
-//   countdownEl.innerHTML = `${minutes}:${seconds}`;
-//   time--;
-// }
-
-
 function getCircle() {
   return document.getElementById('circle');
 }
