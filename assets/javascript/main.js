@@ -1,6 +1,8 @@
 /**
  * Make an Animation to say ready, set go
  * Create an End Animation
+ * Add up to 3 second countdown for inhale, hold, and exhaleHold
+ * Add end early button?
  * Refactor reset into a function
  * Alter 1 circle to 6 (blossoming flower) & pulse to rotation
  */
