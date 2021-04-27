@@ -50,8 +50,27 @@ function start() {
   // total time for actions to take place
   duration = parseInt(document.getElementById('chosenDuration').innerHTML);
   console.log(inhale, inhaleHold, exhale, exhaleHold, duration);
-
-  // elapsedTime();
+  
+  // setInterval(updateCountdown, 1000);
+  updateCountdown();
+  function updateCountdown() {
+    setInterval(function(){
+      // get duration of time set by the user
+      const startingMinutes = duration;
+      // convert duration from minutes to seconds
+      let time = startingMinutes * 60;
+      // get the element that will show the time
+      const countdownEl = document.getElementById('countdown');
+      const minutes = Math.floor(time /60);
+      let seconds = time % 60;
+      seconds = seconds < 10 ? '0' + seconds : seconds;
+      countdownEl.innerHTML = `${minutes}:${seconds}`;
+      time--;
+      if(time <= 0) {
+        clearInterval(time = 0)
+      }
+    }, 1000); 
+  }
 
   // Reset timer
   endTime = new Date((new Date()).getTime() + (duration * 60 * 1000));
@@ -176,16 +195,20 @@ function shouldEnd() {
   return (new Date()) > endTime;
 }
 
-// function elapsedTime() {
-//   startTime = Date.now();
-//   var elapsedTime = Date.now() - startTime;
-//   var minutes = Math.floor((elapsedTime % (1000 * 60 * 60)) / (1000 * 60));
-//   var seconds = Math.floor((elapsedTime % (1000 * 60)) / 1000);
-//   actualElapsedTime = setInterval(function() {
-//   document.getElementById('elapsedTime').innerHTML = minutes +':' + seconds;
-//   }, 1000);
-//   return actualElapsedTime;
+// function updateCountdown() {
+//   // get duration of time set by the user
+//   const startingMinutes = duration;
+//   // convert duration from minutes to seconds
+//   let time = startingMinutes * 60;
+//   // get the element that will show the time
+//   const countdownEl = document.getElementById('countdown');
+//   const minutes = Math.floor(time /60);
+//   let seconds = time % 60;
+//   seconds = seconds < 10 ? '0' + seconds : seconds;
+//   countdownEl.innerHTML = `${minutes}:${seconds}`;
+//   time--;
 // }
+
 
 function getCircle() {
   return document.getElementById('circle');
