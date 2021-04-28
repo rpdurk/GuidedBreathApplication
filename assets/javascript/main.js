@@ -54,27 +54,8 @@ function start() {
   duration = parseInt(document.getElementById('chosenDuration').innerHTML);
   console.log(inhale, inhaleHold, exhale, exhaleHold, duration);
   
-  // setInterval(updateCountdown, 1000);
   updateCountdown();
-  // get duration of time set by the user
-   const startingMinutes = duration;
-  // convert duration from minutes to seconds
-  let time = startingMinutes * 60;
-  function updateCountdown() {
-    setInterval(function(){
-      // get the element that will show the time
-      const countdownEl = document.getElementById('countdown');
-      const minutes = Math.floor(time /60);
-      let seconds = time % 60;
-      seconds = seconds < 10 ? '0' + seconds : seconds;
-      countdownEl.innerHTML = `${minutes}:${seconds}`;
-      time--;
-      if(time <= 0) {
-        clearInterval(time = 0)
-      }
-    }, 1000); 
-  }
-
+  
   addEndEarlyButton()
 
   // Reset timer
@@ -282,6 +263,22 @@ function getEndAnimation() {
 function endEarly() {
   let finishedAnimationText = getActionText();
   finishedAnimationText.innerHTML = finished;
+}
+
+function updateCountdown() {
+  let time = duration * 60;
+  setInterval(function(){
+    // get the element that will show the time
+    const countdownEl = document.getElementById('countdown');
+    const minutes = Math.floor(time /60);
+    let seconds = time % 60;
+    seconds = seconds < 10 ? '0' + seconds : seconds;
+    countdownEl.innerHTML = `${minutes}:${seconds}`;
+    time--;
+    if(time <= 0) {
+      clearInterval(time = 0)
+    }
+  }, 1000); 
 }
 
 function addEndEarlyButton() {
