@@ -9,3 +9,8 @@ function openNav() {
     document.getElementById("main").style.marginLeft= "0";
     document.body.style.backgroundColor = "#f0f8ff";
   }
+
+  function closeModal() {
+    modal = document.getElementById("sessionDetailsModal");
+    modal.style.display = "none";
+  }

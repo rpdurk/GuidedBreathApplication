@@ -2,7 +2,7 @@
  * Make an Animation to say ready, set go
  * Create an End Animation
  * Add up to 3 second countdown for inhale, hold, and exhaleHold
- * Add end early button?
+ * Add end function to navScript Close Modal
  * Refactor reset into a function
  * Alter 1 circle to 6 (blossoming flower) & pulse to rotation
  */
@@ -317,14 +317,8 @@ function addEndEarlyButton() {
     exhaleHoldTimeChosen = parseInt(document.getElementById('chosenExhaleHold').innerHTML);
     const exhaleHoldTimeUsed = document.getElementById('exhaleHoldTime');
     exhaleHoldTimeUsed.innerHTML = `and ${exhaleHoldTimeChosen}s exhale hold!`;
-
-    // NOT WORKING!!!!!!!!!!!!!!!!!!!!!
-    // add span to modal with function to exit
-    const span = document.getElementsByClassName('closeModal');
-    span.onclick = function() {
-      endEarlyModal.style.display = 'none';
-    }
   }
+
   // get the directions div
   const directionsDiv = document.getElementById('main');
   // append button
