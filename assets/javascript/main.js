@@ -17,6 +17,8 @@ let exhale = 0;
 let exhaleHold = 0;
 let duration = 0;
 
+let elapsedTime = 0;
+
 function start() {
   // Reset animation classes
 
@@ -40,6 +42,8 @@ function start() {
   actionText.innerHTML = " ";
   // Reset timeouts array
   timeouts = [];
+  // Reset Elapsed Time
+  let elapsedTime = 0;
 
   // Get values
   // Time to expand
@@ -275,6 +279,7 @@ function updateCountdown() {
     seconds = seconds < 10 ? '0' + seconds : seconds;
     countdownEl.innerHTML = `${minutes}:${seconds}`;
     time--;
+    elapsedTime += 1;
     if(time <= 0) {
       clearInterval(time = 0)
     }
@@ -295,10 +300,10 @@ function addEndEarlyButton() {
     const endEarlyModal = document.getElementById('sessionDetailsModal');
     endEarlyModal.style.display = 'block';
     // get session duration completed
-    sessionDurationCompleted = parseInt(document.getElementById('countdown').innerHTML);
+    sessionDurationCompleted = elapsedTime;
     // get element and insert time.
     const timeCompleted = document.getElementById('timeCompleted');
-    timeCompleted.innerHTML = sessionDurationCompleted;
+    timeCompleted.innerHTML = formatTime(sessionDurationCompleted);
 
     inhaleTimeChosen = parseInt(document.getElementById('chosenInhale').innerHTML);
     const inhaleTimeUsed = document.getElementById('inhaleTime');
@@ -321,4 +326,16 @@ function addEndEarlyButton() {
   const directionsDiv = document.getElementById('main');
   // append button
   directionsDiv.appendChild(endEarlyBtn);
+}
+
+function formatTime(seconds) {
+  let minutes = parseInt(seconds / 60);
+  seconds = parseInt(seconds % 60);
+  if (seconds < 10) {
+    seconds = "0" + seconds;
+  }
+  if (minutes < 10) {
+    minutes = "0" + minutes;
+  }
+  return ` ${minutes}:${seconds}`;
 }
