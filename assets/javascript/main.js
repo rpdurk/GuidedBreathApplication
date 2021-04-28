@@ -62,8 +62,6 @@ function start() {
   console.log(inhale, inhaleHold, exhale, exhaleHold, duration);
   
   updateCountdown();
-  
-  addEndEarlyButton()
 
   // Reset timer
   endTime = new Date((new Date()).getTime() + (duration * 60 * 1000));
@@ -327,28 +325,16 @@ function updateCountdown() {
   }, 1000); 
 }
 
-function addEndEarlyButton() {
-  // on start, create an end early button
-  const endEarlyBtn = document.createElement('button');
-  // create a button
-  endEarlyBtn.type ="button";
-  //add text for button 
-  endEarlyBtn.innerHTML = 'End Session Early';
-  // add class name to be targeted
-  endEarlyBtn.className = 'endEarlyButton';
-  // add button function that creates a modal.
-  
-  // get the directions div
-  const directionsDiv = document.getElementById('main');
-  // append button
-  directionsDiv.appendChild(endEarlyBtn);
+// if button is 
+function endEarlyButton() {
+  endEarlyDetails();
 }
 
 function endEarlyDetails() {
   const endEarlyModal = document.getElementById('sessionDetailsModal');
   endEarlyModal.style.display = 'block';
   // get session duration completed
-  sessionDurationCompleted = elapsedTime;
+  sessionDurationCompleted = elapsedTime -1;
   // get element and insert time.
   const timeCompleted = document.getElementById('timeCompleted');
   timeCompleted.innerHTML = formatTime(sessionDurationCompleted);
