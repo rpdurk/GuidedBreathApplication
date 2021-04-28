@@ -295,10 +295,34 @@ function addEndEarlyButton() {
   // add button function that creates a modal. 
   endEarlyBtn.onclick = function() {
     const endEarlyModal = document.getElementById('sessionDetailsModal');
-    const span = document.getElementsByClassName('closeModal');
     endEarlyModal.style.display = 'block';
+    // get session duration completed
+    sessionDurationCompleted = parseInt(document.getElementById('countdown').innerHTML);
+    // get element and insert time.
+    const timeCompleted = document.getElementById('timeCompleted');
+    timeCompleted.innerHTML = sessionDurationCompleted;
+
+    inhaleTimeChosen = parseInt(document.getElementById('chosenInhale').innerHTML);
+    const inhaleTimeUsed = document.getElementById('inhaleTime');
+    inhaleTimeUsed.innerHTML = `${inhaleTimeChosen}s inhale, `;
+
+    inhaleHoldTimeChosen = parseInt(document.getElementById('chosenInhaleHold').innerHTML);
+    const inhaleHoldTimeUsed = document.getElementById('inhaleHoldTime');
+    inhaleHoldTimeUsed.innerHTML = `${inhaleTimeChosen}s inhale hold, `;
+
+    exhaleTimeChosen = parseInt(document.getElementById('chosenExhale').innerHTML);
+    const exhaleTimeUsed = document.getElementById('exhaleTime');
+    exhaleTimeUsed.innerHTML = `${exhaleTimeChosen}s exhale, `;
+  
+    exhaleHoldTimeChosen = parseInt(document.getElementById('chosenExhaleHold').innerHTML);
+    const exhaleHoldTimeUsed = document.getElementById('exhaleHoldTime');
+    exhaleHoldTimeUsed.innerHTML = `and ${exhaleHoldTimeChosen}s exhale hold!`;
+
+    // NOT WORKING!!!!!!!!!!!!!!!!!!!!!
+    // add span to modal with function to exit
+    const span = document.getElementsByClassName('closeModal');
     span.onclick = function() {
-      modal.style.display = 'none';
+      endEarlyModal.style.display = 'none';
     }
   }
   // get the directions div
