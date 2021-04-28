@@ -285,14 +285,14 @@ function endEarly() {
 
 function addEndEarlyButton() {
   // on start, create an end early button
-  const endEarlyBtn = document.createElement('endEarlyButton');
+  const endEarlyBtn = document.createElement('button');
   // create a button
   endEarlyBtn.type ="button";
   //add text for button 
-  endEarlyBtn.innerHTML = 'End Early';
+  endEarlyBtn.innerHTML = 'End Session Early';
   // add class name to be targeted
   endEarlyBtn.className = 'endEarlyButton';
-  //add button function that creates a modal. 
+  // add button function that creates a modal. 
   endEarlyBtn.onclick = function() {
     const endEarlyModal = document.getElementById('sessionDetailsModal');
     const span = document.getElementsByClassName('closeModal');
