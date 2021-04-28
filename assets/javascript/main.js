@@ -42,9 +42,9 @@ function start() {
   // Reset timeouts array
   timeouts = [];
   // Reset Elapsed Time
-  let elapsedTime = 0;
+  elapsedTime = 0;
   // Reset EndSessionEarly boolean
-  let endSessionEarly = false;
+  endSessionEarly = false;
 
   // Get values
   // Time to expand
