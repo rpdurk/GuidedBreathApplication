@@ -1,8 +1,8 @@
 /**
  * Make an Animation to say ready, set go
- * Create an End Animation
  * Add up to 3 second countdown for inhale, hold, and exhaleHold
- * Add end function to navScript Close Modal
+ * Add button to html for end session early,
+ * Add function for modal and call in endAnimation sequence!
  * Refactor reset into a function
  * Alter 1 circle to 6 (blossoming flower) & pulse to rotation
  */
@@ -74,9 +74,41 @@ function start() {
   timeouts.push(timeout);
 }
 
+/**make a sequence of functions that
+ * Ready function after 1s (like set timeout on line 71) - must call set function
+ * set function (same as above) but calls go
+ * Go function (same as above) but calls expand function
+*/
+
+function doCountdown(timeUtilNextEvent, callback) {
+  const timeout = setTimeout(function() {
+    callback();
+  }, timeUtilNextEvent * 1000);
+  timeouts.push(timeout);
+
+  // make three if statements for the situation of less than 4, 3, 2, or 1 second values
+  if (timeUtilNextEvent >= 4) {
+    timeout = setTimeout(function() {
+      // Play 3 sound
+    }, (timeUtilNextEvent - 1) * 1000);
+    timeouts.push(timeout);
+
+    timeout = setTimeout(function() {
+      // Play 2 sound
+    }, (timeUtilNextEvent - 2) * 1000);
+    timeouts.push(timeout);
+
+    timeout = setTimeout(function() {
+      // Play 1 sound
+    }, (timeUtilNextEvent - 3) * 1000);
+    timeouts.push(timeout);
+  }
+}
+
 function expand() {
   if (shouldEnd()) {
     shrink(true);
+    return;
   }
 
   // call audio sound function
@@ -98,15 +130,18 @@ function expand() {
   circle.classList.add("circleLarge");
   console.log("Expanding!");
 
-  const timeout = setTimeout(function() {
-    holdExpand();
-  }, inhale * 1000);
-  timeouts.push(timeout);
+  // call the docountdown, pass in time until function, then call back (does not take ());
+  doCountdown(inhale, holdExpand);
+  // const timeout = setTimeout(function() {
+  //   holdExpand();
+  // }, inhale * 1000);
+  // timeouts.push(timeout);
 }
 
 function holdExpand() {
   if (shouldEnd()) {
     shrink(true);
+    return;
   }
 
   playExpandHold();
@@ -138,7 +173,7 @@ function shrink(end) {
     circle.classList.remove("circlePurple");
   }
 
-  playShrink();
+  
 
   let actionText = getActionText();
   actionText.innerHTML = "exhale";
@@ -148,10 +183,11 @@ function shrink(end) {
   console.log("Shrinking!");
 
   if (end || shouldEnd()) {
-    playFinished();
     endAnimation();
     return;
   }
+
+  playShrink();
 
   const timeout = setTimeout(function() {
     holdShrink();
@@ -174,11 +210,12 @@ function holdShrink() {
   }
   console.log("Holding after shrink!");
 
-  playShrinkHold();
-
   if (shouldEnd()) {
     shrink(true);
+    return;
   }
+
+  playShrinkHold();
 
   const timeout = setTimeout(function() {
     expand();
@@ -250,19 +287,17 @@ function playShrinkHold() {
   }, exhaleHold * 1000)
 }
 
-// play finished to confirm you are done.
-function playFinished() {
-  const finishedSound = document.createElement('audio');
-  finishedSound.src = 'assets/audio/finishedBrit_F.mp3';
-  finishedSound.load();
-  finishedSound.play();
-}
-
-// end animation
+// end animation with audio
 function endAnimation() {
   let endAnimationText = getEndAnimation();
   endAnimationText.innerHTML = "Finished!";
-  playFinished();
+  endAnimationText.style.fontSize = "50px";
+  const finishedSound = document.createElement('audio');
+  finishedSound.src = 'assets/audio/finishedBrit_F.mp3';
+  if(audioOn && inhaleHold > 0) {
+    finishedSound.load();
+    finishedSound.play();
+  }
 }
 
 function getEndAnimation() {
@@ -328,8 +363,6 @@ function addEndEarlyButton() {
 
     // update end session early boolean
     endSessionEarly = !endSessionEarly;
-    console.log(endSessionEarly);
-
   }
 
   // get the directions div
