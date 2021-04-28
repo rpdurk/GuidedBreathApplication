@@ -41,6 +41,10 @@ body {
   width: 100%;
 }
 
+#countdownDiv {
+  display: none;
+}
+
 .circleContainer {
   width: 100%;
   height: calc(100% - 307px);

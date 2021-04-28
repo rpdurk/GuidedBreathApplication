@@ -74,6 +74,8 @@ function start() {
     }, 1000); 
   }
 
+  addEndEarlyButton()
+
   // Reset timer
   endTime = new Date((new Date()).getTime() + (duration * 60 * 1000));
 
@@ -272,6 +274,35 @@ function endAnimation() {
   playFinished();
 }
 
-  function getEndAnimation() {
-    return document.getElementById('actionText');
+function getEndAnimation() {
+  return document.getElementById('actionText');
+}
+
+function endEarly() {
+  let finishedAnimationText = getActionText();
+  finishedAnimationText.innerHTML = finished;
+}
+
+function addEndEarlyButton() {
+  // on start, create an end early button
+  const endEarlyBtn = document.createElement('endEarlyButton');
+  // create a button
+  endEarlyBtn.type ="button";
+  //add text for button 
+  endEarlyBtn.innerHTML = 'End Early';
+  // add class name to be targeted
+  endEarlyBtn.className = 'endEarlyButton';
+  //add button function that creates a modal. 
+  endEarlyBtn.onclick = function() {
+    const endEarlyModal = document.getElementById('sessionDetailsModal');
+    const span = document.getElementsByClassName('closeModal');
+    endEarlyModal.style.display = 'block';
+    span.onclick = function() {
+      modal.style.display = 'none';
+    }
   }
+  // get the directions div
+  const directionsDiv = document.getElementById('main');
+  // append button
+  directionsDiv.appendChild(endEarlyBtn);
+}
