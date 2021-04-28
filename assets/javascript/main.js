@@ -341,7 +341,7 @@ function endEarlyDetails() {
 
   inhaleHoldTimeChosen = parseInt(document.getElementById('chosenInhaleHold').innerHTML);
   const inhaleHoldTimeUsed = document.getElementById('inhaleHoldTime');
-  inhaleHoldTimeUsed.innerHTML = `${inhaleTimeChosen}s inhale hold, `;
+  inhaleHoldTimeUsed.innerHTML = `${inhaleHoldTimeChosen}s inhale hold, `;
 
   exhaleTimeChosen = parseInt(document.getElementById('chosenExhale').innerHTML);
   const exhaleTimeUsed = document.getElementById('exhaleTime');
