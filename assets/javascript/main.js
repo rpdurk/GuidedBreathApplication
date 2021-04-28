@@ -15,6 +15,7 @@ let exhaleHold = 0;
 let duration = 0;
 
 let elapsedTime = 0;
+let time = 0;
 
 let endSessionEarly = false;
 
@@ -42,9 +43,11 @@ function start() {
   // Reset timeouts array
   timeouts = [];
   // Reset Elapsed Time
-  let elapsedTime = 0;
+  elapsedTime = 0;
+  //  Reset time in countdown
+  time = 0;
   // Reset EndSessionEarly boolean
-  let endSessionEarly = false;
+  endSessionEarly = false;
 
   // Get values
   // Time to expand
@@ -71,9 +74,9 @@ function start() {
 }
 
 /**make a sequence of functions that
- * Ready function after 1s (like set timeout on line 71) - must call set function
- * set function (same as above) but calls go
- * Go function (same as above) but calls expand function
+* Ready function after 1s (like set timeout on line 71) - must call set function
+* set function (same as above) but calls go
+* Go function (same as above) but calls expand function
 */
 
 // function doCountdown(timeUtilNextEvent, callback) {
@@ -124,7 +127,7 @@ function expand() {
   let circle = getCircle();
   circle.style.transition = "all " + inhale + "s linear";
   circle.classList.add("circleLarge");
-  console.log("Expanding!");
+  // console.log("Expanding!");
 
   // call the docountdown, pass in time until function, then call back (does not take ());
   // doCountdown(inhale, holdExpand);
@@ -154,7 +157,7 @@ function holdExpand() {
     let circle = getCircle();
     circle.classList.add("circlePurple");
   }
-  console.log("Holding after expand!");
+  // console.log("Holding after expand!");
 
   const timeout = setTimeout(function() {
     shrink();
@@ -174,7 +177,7 @@ function shrink(end) {
   let circle = getCircle();
   circle.style.transition = "all " + exhale + "s linear";
   circle.classList.remove("circleLarge");
-  console.log("Shrinking!");
+  // console.log("Shrinking!");
 
   if (end || shouldEnd()) {
     endAnimation();
@@ -190,7 +193,7 @@ function shrink(end) {
 }
 
 function holdShrink() {
-   if (exhaleHold > 0) {
+  if (exhaleHold > 0) {
     let actionText = getActionText();
     actionText.innerHTML = "hold";
   }
@@ -202,7 +205,7 @@ function holdShrink() {
     let circle = getCircle();
     circle.classList.add("circlePurple");
   }
-  console.log("Holding after shrink!");
+  // console.log("Holding after shrink!");
 
   if (shouldEnd()) {
     shrink(true);
@@ -305,8 +308,8 @@ function endEarly() {
 }
 
 function updateCountdown() {
-  let time = duration * 60;
-  setInterval(function(){
+  time = duration * 60;
+  const timeout = setInterval(function(){
     // get the element that will show the time
     const countdownEl = document.getElementById('countdown');
     const minutes = Math.floor(time /60);
@@ -314,11 +317,13 @@ function updateCountdown() {
     seconds = seconds < 10 ? '0' + seconds : seconds;
     countdownEl.innerHTML = `${minutes}:${seconds}`;
     time--;
+    console.log(time);
     elapsedTime += 1;
     if(time <= 0) {
       clearInterval(time = 0)
     }
   }, 1000); 
+  timeouts.push(timeout);
 }
 
 // if button is set to true and used
@@ -341,7 +346,7 @@ function endEarlyDetails() {
 
   inhaleHoldTimeChosen = parseInt(document.getElementById('chosenInhaleHold').innerHTML);
   const inhaleHoldTimeUsed = document.getElementById('inhaleHoldTime');
-  inhaleHoldTimeUsed.innerHTML = `${inhaleTimeChosen}s inhale hold, `;
+  inhaleHoldTimeUsed.innerHTML = `${inhaleHoldTimeChosen}s inhale hold, `;
 
   exhaleTimeChosen = parseInt(document.getElementById('chosenExhale').innerHTML);
   const exhaleTimeUsed = document.getElementById('exhaleTime');
