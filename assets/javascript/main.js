@@ -3,7 +3,6 @@
  * Create an End Animation
  * Add up to 3 second countdown for inhale, hold, and exhaleHold
  * Add end function to navScript Close Modal
- * Modal time not actually working?
  * Refactor reset into a function
  * Alter 1 circle to 6 (blossoming flower) & pulse to rotation
  */
@@ -18,6 +17,8 @@ let exhaleHold = 0;
 let duration = 0;
 
 let elapsedTime = 0;
+
+let endSessionEarly = false;
 
 function start() {
   // Reset animation classes
@@ -44,6 +45,8 @@ function start() {
   timeouts = [];
   // Reset Elapsed Time
   let elapsedTime = 0;
+  // Reset EndSessionEarly boolean
+  let endSessionEarly = false;
 
   // Get values
   // Time to expand
@@ -145,6 +148,8 @@ function shrink(end) {
   console.log("Shrinking!");
 
   if (end || shouldEnd()) {
+    playFinished();
+    endAnimation();
     return;
   }
 
@@ -182,7 +187,7 @@ function holdShrink() {
 }
 
 function shouldEnd() {
-  return (new Date()) > endTime;
+  return ((new Date()) > endTime) || endSessionEarly;
 }
 
 function getCircle() {
@@ -320,6 +325,11 @@ function addEndEarlyButton() {
     exhaleHoldTimeChosen = parseInt(document.getElementById('chosenExhaleHold').innerHTML);
     const exhaleHoldTimeUsed = document.getElementById('exhaleHoldTime');
     exhaleHoldTimeUsed.innerHTML = `and ${exhaleHoldTimeChosen}s exhale hold!`;
+
+    // update end session early boolean
+    endSessionEarly = !endSessionEarly;
+    console.log(endSessionEarly);
+
   }
 
   // get the directions div
