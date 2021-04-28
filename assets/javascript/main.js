@@ -80,30 +80,30 @@ function start() {
  * Go function (same as above) but calls expand function
 */
 
-function doCountdown(timeUtilNextEvent, callback) {
-  const timeout = setTimeout(function() {
-    callback();
-  }, timeUtilNextEvent * 1000);
-  timeouts.push(timeout);
+// function doCountdown(timeUtilNextEvent, callback) {
+//   const timeout = setTimeout(function() {
+//     callback();
+//   }, timeUtilNextEvent * 1000);
+//   timeouts.push(timeout);
 
-  // make three if statements for the situation of less than 4, 3, 2, or 1 second values
-  if (timeUtilNextEvent >= 4) {
-    timeout = setTimeout(function() {
-      // Play 3 sound
-    }, (timeUtilNextEvent - 1) * 1000);
-    timeouts.push(timeout);
+//   // make three if statements for the situation of less than 4, 3, 2, or 1 second values
+//   if (timeUtilNextEvent >= 4) {
+//     timeout = setTimeout(function() {
+//       // Play 3 sound
+//     }, (timeUtilNextEvent - 1) * 1000);
+//     timeouts.push(timeout);
 
-    timeout = setTimeout(function() {
-      // Play 2 sound
-    }, (timeUtilNextEvent - 2) * 1000);
-    timeouts.push(timeout);
+//     timeout = setTimeout(function() {
+//       // Play 2 sound
+//     }, (timeUtilNextEvent - 2) * 1000);
+//     timeouts.push(timeout);
 
-    timeout = setTimeout(function() {
-      // Play 1 sound
-    }, (timeUtilNextEvent - 3) * 1000);
-    timeouts.push(timeout);
-  }
-}
+//     timeout = setTimeout(function() {
+//       // Play 1 sound
+//     }, (timeUtilNextEvent - 3) * 1000);
+//     timeouts.push(timeout);
+//   }
+// }
 
 function expand() {
   if (shouldEnd()) {
@@ -131,11 +131,11 @@ function expand() {
   console.log("Expanding!");
 
   // call the docountdown, pass in time until function, then call back (does not take ());
-  doCountdown(inhale, holdExpand);
-  // const timeout = setTimeout(function() {
-  //   holdExpand();
-  // }, inhale * 1000);
-  // timeouts.push(timeout);
+  // doCountdown(inhale, holdExpand);
+  const timeout = setTimeout(function() {
+    holdExpand();
+  }, inhale * 1000);
+  timeouts.push(timeout);
 }
 
 function holdExpand() {
@@ -298,6 +298,7 @@ function endAnimation() {
     finishedSound.load();
     finishedSound.play();
   }
+  endEarlyDetails();
 }
 
 function getEndAnimation() {
@@ -335,40 +336,41 @@ function addEndEarlyButton() {
   endEarlyBtn.innerHTML = 'End Session Early';
   // add class name to be targeted
   endEarlyBtn.className = 'endEarlyButton';
-  // add button function that creates a modal. 
-  endEarlyBtn.onclick = function() {
-    const endEarlyModal = document.getElementById('sessionDetailsModal');
-    endEarlyModal.style.display = 'block';
-    // get session duration completed
-    sessionDurationCompleted = elapsedTime;
-    // get element and insert time.
-    const timeCompleted = document.getElementById('timeCompleted');
-    timeCompleted.innerHTML = formatTime(sessionDurationCompleted);
-
-    inhaleTimeChosen = parseInt(document.getElementById('chosenInhale').innerHTML);
-    const inhaleTimeUsed = document.getElementById('inhaleTime');
-    inhaleTimeUsed.innerHTML = `${inhaleTimeChosen}s inhale, `;
-
-    inhaleHoldTimeChosen = parseInt(document.getElementById('chosenInhaleHold').innerHTML);
-    const inhaleHoldTimeUsed = document.getElementById('inhaleHoldTime');
-    inhaleHoldTimeUsed.innerHTML = `${inhaleTimeChosen}s inhale hold, `;
-
-    exhaleTimeChosen = parseInt(document.getElementById('chosenExhale').innerHTML);
-    const exhaleTimeUsed = document.getElementById('exhaleTime');
-    exhaleTimeUsed.innerHTML = `${exhaleTimeChosen}s exhale, `;
+  // add button function that creates a modal.
   
-    exhaleHoldTimeChosen = parseInt(document.getElementById('chosenExhaleHold').innerHTML);
-    const exhaleHoldTimeUsed = document.getElementById('exhaleHoldTime');
-    exhaleHoldTimeUsed.innerHTML = `and ${exhaleHoldTimeChosen}s exhale hold!`;
-
-    // update end session early boolean
-    endSessionEarly = !endSessionEarly;
-  }
-
   // get the directions div
   const directionsDiv = document.getElementById('main');
   // append button
   directionsDiv.appendChild(endEarlyBtn);
+}
+
+function endEarlyDetails() {
+  const endEarlyModal = document.getElementById('sessionDetailsModal');
+  endEarlyModal.style.display = 'block';
+  // get session duration completed
+  sessionDurationCompleted = elapsedTime;
+  // get element and insert time.
+  const timeCompleted = document.getElementById('timeCompleted');
+  timeCompleted.innerHTML = formatTime(sessionDurationCompleted);
+
+  inhaleTimeChosen = parseInt(document.getElementById('chosenInhale').innerHTML);
+  const inhaleTimeUsed = document.getElementById('inhaleTime');
+  inhaleTimeUsed.innerHTML = `${inhaleTimeChosen}s inhale, `;
+
+  inhaleHoldTimeChosen = parseInt(document.getElementById('chosenInhaleHold').innerHTML);
+  const inhaleHoldTimeUsed = document.getElementById('inhaleHoldTime');
+  inhaleHoldTimeUsed.innerHTML = `${inhaleTimeChosen}s inhale hold, `;
+
+  exhaleTimeChosen = parseInt(document.getElementById('chosenExhale').innerHTML);
+  const exhaleTimeUsed = document.getElementById('exhaleTime');
+  exhaleTimeUsed.innerHTML = `${exhaleTimeChosen}s exhale, `;
+
+  exhaleHoldTimeChosen = parseInt(document.getElementById('chosenExhaleHold').innerHTML);
+  const exhaleHoldTimeUsed = document.getElementById('exhaleHoldTime');
+  exhaleHoldTimeUsed.innerHTML = `and ${exhaleHoldTimeChosen}s exhale hold!`;
+
+  // update end session early boolean
+  endSessionEarly = !endSessionEarly;
 }
 
 function formatTime(seconds) {
