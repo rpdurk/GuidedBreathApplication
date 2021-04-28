@@ -1,8 +1,6 @@
 /**
  * Make an Animation to say ready, set go
  * Add up to 3 second countdown for inhale, hold, and exhaleHold
- * Add button to html for end session early,
- * Add function for modal and call in endAnimation sequence!
  * Refactor reset into a function
  * Alter 1 circle to 6 (blossoming flower) & pulse to rotation
  */
@@ -171,8 +169,6 @@ function shrink(end) {
     circle.classList.remove("circlePurple");
   }
 
-  
-
   let actionText = getActionText();
   actionText.innerHTML = "exhale";
   let circle = getCircle();
@@ -325,7 +321,7 @@ function updateCountdown() {
   }, 1000); 
 }
 
-// if button is 
+// if button is set to true and used
 function endEarlyButton() {
   endEarlyDetails();
 }
