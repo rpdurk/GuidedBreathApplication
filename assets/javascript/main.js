@@ -1,6 +1,9 @@
 /**
  * Make an Animation to say ready, set go
  * Create an End Animation
+ * Add up to 3 second countdown for inhale, hold, and exhaleHold
+ * Add end function to navScript Close Modal
+ * Modal time not actually working?
  * Refactor reset into a function
  * Alter 1 circle to 6 (blossoming flower) & pulse to rotation
  */
@@ -50,11 +53,33 @@ function start() {
   // total time for actions to take place
   duration = parseInt(document.getElementById('chosenDuration').innerHTML);
   console.log(inhale, inhaleHold, exhale, exhaleHold, duration);
+  
+  // setInterval(updateCountdown, 1000);
+  updateCountdown();
+  // get duration of time set by the user
+   const startingMinutes = duration;
+  // convert duration from minutes to seconds
+  let time = startingMinutes * 60;
+  function updateCountdown() {
+    setInterval(function(){
+      // get the element that will show the time
+      const countdownEl = document.getElementById('countdown');
+      const minutes = Math.floor(time /60);
+      let seconds = time % 60;
+      seconds = seconds < 10 ? '0' + seconds : seconds;
+      countdownEl.innerHTML = `${minutes}:${seconds}`;
+      time--;
+      if(time <= 0) {
+        clearInterval(time = 0)
+      }
+    }, 1000); 
+  }
 
-  // elapsedTime();
+  addEndEarlyButton()
 
   // Reset timer
   endTime = new Date((new Date()).getTime() + (duration * 60 * 1000));
+
   const timeout = setTimeout(function() {
     expand();
   }, 1000);
@@ -175,17 +200,6 @@ function shouldEnd() {
   return (new Date()) > endTime;
 }
 
-// function elapsedTime() {
-//   startTime = Date.now();
-//   var elapsedTime = Date.now() - startTime;
-//   var minutes = Math.floor((elapsedTime % (1000 * 60 * 60)) / (1000 * 60));
-//   var seconds = Math.floor((elapsedTime % (1000 * 60)) / 1000);
-//   actualElapsedTime = setInterval(function() {
-//   document.getElementById('elapsedTime').innerHTML = minutes +':' + seconds;
-//   }, 1000);
-//   return actualElapsedTime;
-// }
-
 function getCircle() {
   return document.getElementById('circle');
 }
@@ -244,4 +258,70 @@ function playShrinkHold() {
   setTimeout(function() {
     shrinkHoldSound.pause();
   }, exhaleHold * 1000)
+}
+
+// play finished to confirm you are done.
+function playFinished() {
+  const finishedSound = document.createElement('audio');
+  finishedSound.src = 'assets/audio/finishedBrit_F.mp3';
+  finishedSound.load();
+  finishedSound.play();
+}
+
+// end animation
+function endAnimation() {
+  let endAnimationText = getEndAnimation();
+  endAnimationText.innerHTML = "Finished!";
+  playFinished();
+}
+
+function getEndAnimation() {
+  return document.getElementById('actionText');
+}
+
+function endEarly() {
+  let finishedAnimationText = getActionText();
+  finishedAnimationText.innerHTML = finished;
+}
+
+function addEndEarlyButton() {
+  // on start, create an end early button
+  const endEarlyBtn = document.createElement('button');
+  // create a button
+  endEarlyBtn.type ="button";
+  //add text for button 
+  endEarlyBtn.innerHTML = 'End Session Early';
+  // add class name to be targeted
+  endEarlyBtn.className = 'endEarlyButton';
+  // add button function that creates a modal. 
+  endEarlyBtn.onclick = function() {
+    const endEarlyModal = document.getElementById('sessionDetailsModal');
+    endEarlyModal.style.display = 'block';
+    // get session duration completed
+    sessionDurationCompleted = parseInt(document.getElementById('countdown').innerHTML);
+    // get element and insert time.
+    const timeCompleted = document.getElementById('timeCompleted');
+    timeCompleted.innerHTML = sessionDurationCompleted;
+
+    inhaleTimeChosen = parseInt(document.getElementById('chosenInhale').innerHTML);
+    const inhaleTimeUsed = document.getElementById('inhaleTime');
+    inhaleTimeUsed.innerHTML = `${inhaleTimeChosen}s inhale, `;
+
+    inhaleHoldTimeChosen = parseInt(document.getElementById('chosenInhaleHold').innerHTML);
+    const inhaleHoldTimeUsed = document.getElementById('inhaleHoldTime');
+    inhaleHoldTimeUsed.innerHTML = `${inhaleTimeChosen}s inhale hold, `;
+
+    exhaleTimeChosen = parseInt(document.getElementById('chosenExhale').innerHTML);
+    const exhaleTimeUsed = document.getElementById('exhaleTime');
+    exhaleTimeUsed.innerHTML = `${exhaleTimeChosen}s exhale, `;
+  
+    exhaleHoldTimeChosen = parseInt(document.getElementById('chosenExhaleHold').innerHTML);
+    const exhaleHoldTimeUsed = document.getElementById('exhaleHoldTime');
+    exhaleHoldTimeUsed.innerHTML = `and ${exhaleHoldTimeChosen}s exhale hold!`;
+  }
+
+  // get the directions div
+  const directionsDiv = document.getElementById('main');
+  // append button
+  directionsDiv.appendChild(endEarlyBtn);
 }

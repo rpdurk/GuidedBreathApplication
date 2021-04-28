@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="assets/css/switchStyle.css">
     <link rel="stylesheet" href="assets/css/circleStyle.css">
     <link rel="stylesheet" href="assets/css/circleMoveStyle.css">
+    <link rel="stylesheet" href="assets/css/modalStyle.css">
 
   </head>
   <body>
@@ -54,6 +55,13 @@
         </label>
       </a>
       <a>
+        <h6>Show Countdown Timer</h6>
+        <label class="switch"> 
+          <input type="checkbox">
+          <span onclick="toggleCountdown()" value="false" id="switchValue" class="sliderSwitch round"></span>
+        </label>
+      </a>
+      <a>
         <h6>Color Hold Cue</h6>
         <label class="switch"> 
           <input type="checkbox">
@@ -80,10 +88,10 @@
         <ul>3) Customize your experience.</ul>
         <ul>4) Click <a href="#" onclick="start();">start</a> and enjoy!</ul>
       </p>
-      <!-- <div class="elapsedTime">
-        <h3>Elapsed Time: <span id='elapsedTime'></span></h3>
-        <h3><a href="#" onclick="shouldEnd();" id='End'>End Early</a></h3>
-      </div> -->
+      <div class="timer" id = "countdownDiv">
+        <h2>Time Left: <span id='countdown'></span></h2>
+        <!-- <h3><a href="#" onclick="endEarly();" id='End'>End Early</a></h3> -->
+      </div>
     </div>
     <!-- end of directions -->
 
@@ -93,6 +101,19 @@
         <h1 id ="actionText" class="actionText"></h1>
     </div>
   </div>
+
+  <!-- Modal Div and Content -->
+  <div id="sessionDetailsModal" class="modal">
+    <div class="modal-content">
+      <a><span class="closeModal" onclick="closeModal()">&times;</span></a>
+      <p>You have finished your breath session!</p>
+      <p>You completed<span id='timeCompleted'></span> of breath work!</p>
+      <p>You used a <span id='inhaleTime'></span><span id='inhaleHoldTime'></span><span id='exhaleTime'></span><span id='exhaleHoldTime'></span></p>
+      <p>Great work and have a nice day!</p>
+    </div>
+  </div>
+  <!-- End of Modal Div -->
+
   <!-- audio files -->
   <audio id="inhale" src="assets/audio/inhaleBrit.mp3"></audio>
 
