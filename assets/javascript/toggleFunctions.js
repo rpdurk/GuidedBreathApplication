@@ -27,3 +27,16 @@ function toggleCountdown() {
         countdownDiv.style.display = "none";
     }
 }
+
+let endEarlyButtonOn = false;
+
+function toggleEndEarlyButton() {
+    endEarlyButtonOn = !endEarlyButtonOn;
+    if(endEarlyButtonOn){
+        const endEarlyDiv = document.getElementById("endSessionEarly");
+        endEarlyDiv.style.display = "block";
+    } else {
+        const endEarlyDiv = document.getElementById("endSessionEarly");
+        endEarlyDiv.style.display = "none";
+    }
+}

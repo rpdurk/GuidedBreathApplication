@@ -1,4 +1,25 @@
-/* End Early Modal and Details */
+/* End Early Button and  Modal Details */
+
+#endSessionEarly{
+  display: none;
+}
+
+.endEarlyButton {
+  text-align: center;
+  color: white;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 10px;
+  transition-duration: 0.4s;
+  background-color: white; 
+  color: black; 
+  border: 2px solid #008CBA;
+}
+
+.endEarlyButton:hover{
+  background-color: #008CBA;
+  color: white;
+}
 
 .modal {
   display: none; /* Hidden by default */
