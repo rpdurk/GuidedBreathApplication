@@ -358,6 +358,8 @@ function endEarlyDetails() {
 
   // update end session early boolean
   endSessionEarly = !endSessionEarly;
+  // stop timer if finished selected
+  time = 0;
 }
 
 function formatTime(seconds) {
