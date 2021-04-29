@@ -5,9 +5,10 @@
 
  var audioFiles = {
   shrinkSound: new Audio('assets/audio/exhaleBrit.mp3'),
-  finishedSound: new Audio('assets/audio/finishedbrit_F.mp3'),
+  finishedSound: new Audio('assets/audio/finishedBrit_F.mp3'),
   expandHoldSound: new Audio('assets/audio/holdBrit.mp3'),
   expandSound: new Audio('assets/audio/inhaleBrit.mp3'),
+  shrinkHoldSound: new Audio('assets/audio/holdBrit.mp3'),
   oneSound: new Audio('assets/audio/oneBrit.mp3'),
   twoSound: new Audio('assets/audio/twoBrit.mp3'),
   threeSound: new Audio('assets/audio/threeBrit.mp3'),
@@ -83,8 +84,9 @@ function start() {
  duration = parseInt(document.getElementById('chosenDuration').innerHTML);
 //  console.log(inhale, inhaleHold, exhale, exhaleHold, duration);
 
- // Reset timer
- endTime = new Date((new Date()).getTime() + (duration * 60 * 1000));
+//  Reset timer
+//  3 seconds added to time because of countdown animation
+ endTime = new Date((new Date()).getTime() + (duration * 60 * 1000) + 3);
 
  const timeout = setTimeout(function() {
    callReady();
@@ -342,7 +344,7 @@ function endAnimation() {
  let endAnimationText = getEndAnimation();
  endAnimationText.innerHTML = "Finished!";
  endAnimationText.style.fontSize = "50px";
- const finishedSound = audioFiles['finishedSound'];
+ const finishedSound = audioFiles.finishedSound;
  if(audioOn && inhaleHold > 0) {
    finishedSound.load();
    finishedSound.play();
