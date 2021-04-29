@@ -20,7 +20,7 @@
       <a>
           <div id='divInhale' class="slidecontainer" >
               <h6>Inhale Time: <span id='chosenInhale'></span>s</h6>
-          <input type="range" min="0" max="30" value="4" class="slider" id="inhaleValue">
+          <input type="range" min="1" max="30" value="4" class="slider" id="inhaleValue">
           </div>
       </a>
       <a>
@@ -32,7 +32,7 @@
       <a>
           <div id='divExhale' class="slidecontainer">
               <h6>Exhale Time: <span id='chosenExhale'></span>s</h6>
-          <input type="range" min="0" max="30" value="4" class="slider" id="exhaleValue">
+          <input type="range" min="1" max="30" value="4" class="slider" id="exhaleValue">
         </div>
       </a>
       <a>
@@ -48,10 +48,17 @@
           </div>
       </a>
       <a>
-        <h6>Audio</h6>
+        <h6>Action Audio</h6>
         <label class="switch"> 
           <input type="checkbox">
           <span onclick="toggleAudio()" value="false" id="switchValue" class="sliderSwitch round"></span>
+        </label>
+      </a>
+      <a>
+        <h6>Countdown Audio</h6>
+        <label class="switch"> 
+          <input type="checkbox">
+          <span onclick="toggleAudioCountdown()" value="false" id="switchValue" class="sliderSwitch round"></span>
         </label>
       </a>
       <a>
