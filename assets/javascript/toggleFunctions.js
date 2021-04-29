@@ -4,6 +4,12 @@ function toggleAudio() {
     audioOn = !audioOn;
 }
 
+let audioCountdownOn = false;
+
+function toggleAudioCountdown() {
+    audioCountdownOn = !audioCountdownOn;
+}
+
 let colorOn = false;
 
 function toggleColor() {

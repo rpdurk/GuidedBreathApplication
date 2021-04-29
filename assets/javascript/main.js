@@ -44,11 +44,8 @@ function start() {
   timeouts = [];
   // Reset Elapsed Time
   elapsedTime = 0;
-<<<<<<< HEAD
-=======
   //  Reset time in countdown
   time = 0;
->>>>>>> master
   // Reset EndSessionEarly boolean
   endSessionEarly = false;
 
@@ -64,48 +61,130 @@ function start() {
   // total time for actions to take place
   duration = parseInt(document.getElementById('chosenDuration').innerHTML);
   console.log(inhale, inhaleHold, exhale, exhaleHold, duration);
-  
-  updateCountdown();
 
   // Reset timer
   endTime = new Date((new Date()).getTime() + (duration * 60 * 1000));
 
   const timeout = setTimeout(function() {
-    expand();
+    // expand();
+    callReady();
   }, 1000);
   timeouts.push(timeout);
 }
 
-/**make a sequence of functions that
-* Ready function after 1s (like set timeout on line 71) - must call set function
-* set function (same as above) but calls go
-* Go function (same as above) but calls expand function
-*/
+function callReady() {
+  let actionText = getActionText();
+  actionText.innerHTML = "Ready";
+  const timeout = setTimeout(function() {
+    callSet();
+  }, 1000);
+  timeouts.push(timeout);
+}
 
-// function doCountdown(timeUtilNextEvent, callback) {
-//   const timeout = setTimeout(function() {
-//     callback();
-//   }, timeUtilNextEvent * 1000);
-//   timeouts.push(timeout);
+function callSet() {
+  let actionText = getActionText();
+  actionText.innerHTML = "Set";
+  const timeout = setTimeout(function() {
+    callGo();
+  }, 1000);
+  timeouts.push(timeout);
+}
 
-//   // make three if statements for the situation of less than 4, 3, 2, or 1 second values
-//   if (timeUtilNextEvent >= 4) {
-//     timeout = setTimeout(function() {
-//       // Play 3 sound
-//     }, (timeUtilNextEvent - 1) * 1000);
-//     timeouts.push(timeout);
+function callGo() {
+  let actionText = getActionText();
+  actionText.innerHTML = "Go!";
+  updateCountdown();
+  const timeout = setTimeout(function() {  
+    expand();
+  }, 1000); 
+  timeouts.push(timeout);
+}
 
-//     timeout = setTimeout(function() {
-//       // Play 2 sound
-//     }, (timeUtilNextEvent - 2) * 1000);
-//     timeouts.push(timeout);
+function doCountdown(timeUtilNextEvent, callback) {
+  timeout = setTimeout(function() {
+    callback();
+  }, timeUtilNextEvent * 1000);
+  timeouts.push(timeout);
 
-//     timeout = setTimeout(function() {
-//       // Play 1 sound
-//     }, (timeUtilNextEvent - 3) * 1000);
-//     timeouts.push(timeout);
-//   }
-// }
+  // make three if statements for the situation of less than 4, 3, 2, or 1 second values
+  if (timeUtilNextEvent >= 4 && audioCountdownOn) {
+    timeout = setTimeout(function() {
+      let threeSound  = document.createElement('audio');
+      threeSound.src ='assets/audio/threeBrit.mp3';
+      threeSound.load();
+      threeSound.play();
+      console.log('I Said three!');
+      setTimeout(function() {
+        threeSound.pause();
+      }, 1000)
+    }, (timeUtilNextEvent - 3) * 1000);
+    timeouts.push(timeout);
+
+    timeout = setTimeout(function() {
+      let twoSound  = document.createElement('audio');
+      twoSound.src ='assets/audio/twoBrit.mp3';
+      twoSound.load();
+      twoSound.play();
+      console.log('I Said two!');
+      setTimeout(function() {
+        twoSound.pause();
+      }, 1000)
+    }, (timeUtilNextEvent - 2) * 1000);
+    timeouts.push(timeout);
+
+    timeout = setTimeout(function() {
+      const oneSound  = document.createElement('audio');
+      oneSound.src ='assets/audio/oneBrit.mp3';
+      oneSound.load();
+      oneSound.play();
+      console.log('I Said one!');
+      setTimeout(function() {
+        oneSound.pause();
+      }, 1000)
+    }, (timeUtilNextEvent - 1) * 1000);
+    timeouts.push(timeout);
+  }
+
+  if (timeUtilNextEvent >= 3 && audioCountdownOn) {
+    timeout = setTimeout(function() {
+      let twoSound  = document.createElement('audio');
+      twoSound.src ='assets/audio/twoBrit.mp3';
+      twoSound.load();
+      twoSound.play();
+      console.log('I Said two!');
+      setTimeout(function() {
+        twoSound.pause();
+      }, 1000)
+    }, (timeUtilNextEvent - 2) * 1000);
+    timeouts.push(timeout);
+
+    timeout = setTimeout(function() {
+      const oneSound  = document.createElement('audio');
+      oneSound.src ='assets/audio/oneBrit.mp3';
+      oneSound.load();
+      oneSound.play();
+      console.log('I Said one!');
+      setTimeout(function() {
+        oneSound.pause();
+      }, 1000)
+    }, (timeUtilNextEvent - 1) * 1000);
+    timeouts.push(timeout);
+  }
+
+  if (timeUtilNextEvent >= 2 && audioCountdownOn) {
+    timeout = setTimeout(function() {
+      const oneSound  = document.createElement('audio');
+      oneSound.src ='assets/audio/oneBrit.mp3';
+      oneSound.load();
+      oneSound.play();
+      console.log('I Said one!');
+      setTimeout(function() {
+        oneSound.pause();
+      }, 1000)
+    }, (timeUtilNextEvent - 1) * 1000);
+    timeouts.push(timeout);
+  }
+}
 
 function expand() {
   if (shouldEnd()) {
@@ -133,11 +212,11 @@ function expand() {
   // console.log("Expanding!");
 
   // call the docountdown, pass in time until function, then call back (does not take ());
-  // doCountdown(inhale, holdExpand);
-  const timeout = setTimeout(function() {
-    holdExpand();
-  }, inhale * 1000);
-  timeouts.push(timeout);
+  doCountdown(inhale, holdExpand);
+  // const timeout = setTimeout(function() {
+  //   holdExpand();
+  // }, inhale * 1000);
+  // timeouts.push(timeout);
 }
 
 function holdExpand() {
@@ -311,7 +390,7 @@ function endEarly() {
 }
 
 function updateCountdown() {
-  time = duration * 60;
+  time = (duration * 60);
   const timeout = setInterval(function(){
     // get the element that will show the time
     const countdownEl = document.getElementById('countdown');
