@@ -1,6 +1,5 @@
 /**
- * Make an Animation to say ready, set go
- * Add up to 3 second countdown for inhale, hold, and exhaleHold
+ * update words for countdown to new audio.
  * Refactor reset into a function
  * Alter 1 circle to 6 (blossoming flower) & pulse to rotation
  */
@@ -113,7 +112,7 @@ function doCountdown(timeUtilNextEvent, callback) {
       threeSound.src ='assets/audio/threeBrit.mp3';
       threeSound.load();
       threeSound.play();
-      console.log('I Said three!');
+      // console.log('I Said three!');
       setTimeout(function() {
         threeSound.pause();
       }, 1000)
@@ -127,7 +126,7 @@ function doCountdown(timeUtilNextEvent, callback) {
       twoSound.src ='assets/audio/twoBrit.mp3';
       twoSound.load();
       twoSound.play();
-      console.log('I Said two!');
+      // console.log('I Said two!');
       setTimeout(function() {
         twoSound.pause();
       }, 1000)
@@ -141,7 +140,7 @@ function doCountdown(timeUtilNextEvent, callback) {
       oneSound.src ='assets/audio/oneBrit.mp3';
       oneSound.load();
       oneSound.play();
-      console.log('I Said one!');
+      // console.log('I Said one!');
       setTimeout(function() {
         oneSound.pause();
       }, 1000)
@@ -349,7 +348,7 @@ function updateCountdown() {
     seconds = seconds < 10 ? '0' + seconds : seconds;
     countdownEl.innerHTML = `${minutes}:${seconds}`;
     time--;
-    console.log(time);
+    // console.log(time);
     elapsedTime += 1;
     if(time <= 0) {
       clearInterval(time = 0)
@@ -388,6 +387,8 @@ function endEarlyDetails() {
   const exhaleHoldTimeUsed = document.getElementById('exhaleHoldTime');
   exhaleHoldTimeUsed.innerHTML = `and ${exhaleHoldTimeChosen}s exhale hold!`;
 
+  // // update countdown audio to false to stop
+  // audioCountdownOn = !audioCountdownOn;
   // update end session early boolean
   endSessionEarly = !endSessionEarly;
   // stop timer if finished selected
