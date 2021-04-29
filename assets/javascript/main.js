@@ -1,6 +1,6 @@
 /**
  * Refactor reset into a function
- * Alter 1 circle to 6 (blossoming flower) & pulse to rotation
+ * Alter 1 circle to 6 (blossoming flower) & rotation as hold cue
  */
 
  var audioFiles = {
