@@ -119,30 +119,6 @@ function doCountdown(timeUtilNextEvent, callback) {
       }, 1000)
     }, (timeUtilNextEvent - 3) * 1000);
     timeouts.push(timeout);
-
-    timeout = setTimeout(function() {
-      let twoSound  = document.createElement('audio');
-      twoSound.src ='assets/audio/twoBrit.mp3';
-      twoSound.load();
-      twoSound.play();
-      console.log('I Said two!');
-      setTimeout(function() {
-        twoSound.pause();
-      }, 1000)
-    }, (timeUtilNextEvent - 2) * 1000);
-    timeouts.push(timeout);
-
-    timeout = setTimeout(function() {
-      const oneSound  = document.createElement('audio');
-      oneSound.src ='assets/audio/oneBrit.mp3';
-      oneSound.load();
-      oneSound.play();
-      console.log('I Said one!');
-      setTimeout(function() {
-        oneSound.pause();
-      }, 1000)
-    }, (timeUtilNextEvent - 1) * 1000);
-    timeouts.push(timeout);
   }
 
   if (timeUtilNextEvent >= 3 && audioCountdownOn) {
@@ -156,18 +132,6 @@ function doCountdown(timeUtilNextEvent, callback) {
         twoSound.pause();
       }, 1000)
     }, (timeUtilNextEvent - 2) * 1000);
-    timeouts.push(timeout);
-
-    timeout = setTimeout(function() {
-      const oneSound  = document.createElement('audio');
-      oneSound.src ='assets/audio/oneBrit.mp3';
-      oneSound.load();
-      oneSound.play();
-      console.log('I Said one!');
-      setTimeout(function() {
-        oneSound.pause();
-      }, 1000)
-    }, (timeUtilNextEvent - 1) * 1000);
     timeouts.push(timeout);
   }
 
@@ -211,12 +175,7 @@ function expand() {
   circle.classList.add("circleLarge");
   // console.log("Expanding!");
 
-  // call the docountdown, pass in time until function, then call back (does not take ());
   doCountdown(inhale, holdExpand);
-  // const timeout = setTimeout(function() {
-  //   holdExpand();
-  // }, inhale * 1000);
-  // timeouts.push(timeout);
 }
 
 function holdExpand() {
@@ -241,10 +200,7 @@ function holdExpand() {
   }
   // console.log("Holding after expand!");
 
-  const timeout = setTimeout(function() {
-    shrink();
-  }, inhaleHold * 1000);
-  timeouts.push(timeout);
+  doCountdown(inhaleHold, shrink);
 }
 
 function shrink(end) {
@@ -268,10 +224,7 @@ function shrink(end) {
 
   playShrink();
 
-  const timeout = setTimeout(function() {
-    holdShrink();
-  }, exhale * 1000);
-  timeouts.push(timeout);
+  doCountdown(exhale, holdShrink);
 }
 
 function holdShrink() {
@@ -296,10 +249,7 @@ function holdShrink() {
 
   playShrinkHold();
 
-  const timeout = setTimeout(function() {
-    expand();
-  }, exhaleHold * 1000);
-  timeouts.push(timeout);
+  doCountdown(exhaleHold, expand);
 }
 
 function shouldEnd() {
