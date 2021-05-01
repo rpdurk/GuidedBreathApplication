@@ -177,6 +177,44 @@ function doCountdown(timeUtilNextEvent, callback) {
  }
 }
 
+// function doVisualCountdown(timeUtilNextEvent, callback) {
+//   timeout = setTimeout(function() {
+//     callback();
+//   }, timeUtilNextEvent * 1000);
+//   timeouts.push(timeout);
+ 
+//   // make 30 if statements for the situation of less than 1-30, 
+//   if (timeUtilNextEvent >= 30 && visualCountdownOn) {
+//     timeout = setTimeout(function() {
+//       if (!endSessionEarly) {
+//       let countText = getCountText();
+//           countText.innerHTML = "30";
+//      //  console.log('3o Seconds Left!');
+//       setTimeout(function() {
+//         countText.innerHTML = " ";
+//       }, 1000)
+//      }
+//     }, (timeUtilNextEvent - 29) * 1000);
+//     timeouts.push(timeout);
+//   }
+ 
+//   if (timeUtilNextEvent >= 3 && audioCountdownOn) {
+//     timeout = setTimeout(function() {
+//       // don't play if end session was clicked
+//       if (!endSessionEarly) {
+//        let twoSound  = audioFiles.twoSound;
+//        twoSound.load();
+//        twoSound.play();
+//        //  console.log('I Said two!');
+//        setTimeout(function() {
+//          twoSound.pause();
+//        }, 1000)
+//      }
+//     }, (timeUtilNextEvent - 2) * 1000);
+//     timeouts.push(timeout);
+//   }
+//  }
+
 function expand() {
  if (shouldEnd()) {
    shrink(true);
