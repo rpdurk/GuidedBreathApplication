@@ -4,18 +4,20 @@
     <meta charset="UTF-8">
     <title>GuidedBreath</title>
     <!-- <link rel="stylesheet" href="assets/css/canvasStyle.css"> -->
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/sliderStyle.css">
     <link rel="stylesheet" href="assets/css/navStyle.css">
     <link rel="stylesheet" href="assets/css/switchStyle.css">
     <link rel="stylesheet" href="assets/css/circleStyle.css">
     <link rel="stylesheet" href="assets/css/circleMoveStyle.css">
     <link rel="stylesheet" href="assets/css/modalStyle.css">
+    
 
   </head>
   <body>
     <div class="container">
     <!-- start of side bar -->
-    <div id="mySidenav" class="sidenav">
+    <!-- <div id="mySidenav" class="sidenav">
       <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
       <a>
           <div id='divInhale' class="slidecontainer" >
@@ -90,27 +92,241 @@
         </label>
       </a>
       
+    </div> -->
+
+    <!-- Nav 2 -->
+    <nav id="mySidenav" class="sidenav md:left-0 md:block md:fixed md:top-0 md:bottom-0 md:overflow-y-auto md:flex-row md:flex-nowrap md:overflow-hidden shadow-xl bg-white flex flex-wrap items-center justify-between relative md: z-10 py-4 px-6">
+    <div class="md:flex-col md:items-stretch md:min-h-full md:flex-nowrap px-0 flex flex-wrap items-center justify-between w-full mx-auto">
+    <!-- Toggler -->
+      <div class="inline-flex">
+        <a class="inline-flex pr-2">
+          <span onclick="closeNav()">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </span>
+        </a>
+        <!-- Brand -->
+        <a class="inline-flex">
+         Guide Customization
+        </a>
+      </div>
+      <!-- Collapse -->
+      <div class="md:flex md:flex-col md:items-stretch md:opacity-100 md:relative md:mt-4 md:shadow-none shadow absolute top-0 left-0 right-0 z-40 overflow-y-auto overflow-x-hidden h-auto items-center flex-1 rounded" [ngClass]="collapseShow">
+        <!-- Navigation -->
+        <ul class="md:flex-col md:min-w-full flex flex-col list-none">
+          <li class="items-center py-2 border-l-4 border-transparent hover:border-blue-400 pl-2">
+              <a>
+                  <div id='divInhale' class="slidecontainer" >
+                      <h6>Inhale Time: <span id='chosenInhale'></span>s</h6>
+                  <input type="range" min="1" max="30" value="1" class="slider" id="inhaleValue">
+                  </div>
+              </a>
+          </li>
+          <li class="items-center py-2 border-l-4 border-transparent hover:border-blue-400 pl-2">
+            <a>
+              <div id='divInhaleHold' class="slidecontainer" >
+                  <h6>Hold Time: <span id='chosenInhaleHold'></span>s</h6>
+              <input type="range" min="0" max="30" value="3" class="slider" id="inhaleHoldValue">
+              </div>
+            </a>
+          </li>
+          <li class="items-center py-2 border-l-4 border-transparent hover:border-blue-400 pl-2">
+            <a>
+              <div id='divExhale' class="slidecontainer">
+                  <h6>Exhale Time: <span id='chosenExhale'></span>s</h6>
+                <input type="range" min="1" max="30" value="2" class="slider" id="exhaleValue">
+              </div>
+            </a>
+          </li>
+          <li class="items-center py-2 border-l-4 border-transparent hover:border-blue-400 pl-2">
+            <a>
+              <div id='divExhaleHold' class="slidecontainer">
+                  <h6>Hold Time: <span id='chosenExhaleHold'></span>s</h6>
+                <input type="range" min="0" max="30" value="0" class="slider" id="exhaleHoldValue">
+              </div>
+            </a>
+          </li>
+          <li class="items-center py-2 border-l-4 border-transparent hover:border-blue-400 pl-2">
+            <a>
+              <div id='divDuration' class="slidecontainer">
+                  <h6>Session Duration: <span id='chosenDuration'></span>min(s)</h6>
+                <input type="range" min="1" max="60" value="20" class="slider" id="durationValue">
+              </div>
+            </a>
+          </li>
+        <!-- Start of Toggles-->
+        <li class="items-center py-2 border-l-4 border-transparent hover:border-blue-400 pl-2">
+            <a>
+              <h6>Action Audio</h6>
+              <label class="switch"> 
+                <input type="checkbox">
+                <span onclick="toggleAudio()" value="false" id="switchValue" class="sliderSwitch round"></span>
+              </label>
+            </a>
+          </li>
+          <li class="items-center py-2 border-l-4 border-transparent hover:border-blue-400 pl-2">
+            <a>
+              <h6>Countdown Audio</h6>
+              <label class="switch"> 
+                <input type="checkbox">
+                <span onclick="toggleAudioCountdown()" value="false" id="switchValue" class="sliderSwitch round"></span>
+              </label>
+            </a>
+          </li>
+          <li class="items-center py-2 border-l-4 border-transparent hover:border-blue-400 pl-2">
+            <a>
+              <h6>Show Countdown Timer</h6>
+              <label class="switch"> 
+                <input type="checkbox">
+                <span onclick="toggleCountdown()" value="false" id="switchValue" class="sliderSwitch round"></span>
+              </label>
+            </a>
+          </li>
+          <li class="items-center py-2 border-l-4 border-transparent hover:border-blue-400 pl-2">
+            <a>
+              <h6>Option to End Early</h6>
+              <label class="switch"> 
+                <input type="checkbox">
+                <span onclick="toggleEndEarlyButton()" value="false" id="switchValue" class="sliderSwitch round"></span>
+              </label>
+            </a>
+          </li>
+          <li class="items-center py-2 border-l-4 border-transparent hover:border-blue-400 pl-2">
+            <a>
+              <h6>Color Hold Cue</h6>
+              <label class="switch"> 
+                <input type="checkbox">
+                <span onclick="toggleColor()" value="false" id="switchValue" class="sliderSwitch round"></span>
+              </label>
+            </a>
+          </li>
+          <li class="items-center py-2 border-l-4 border-transparent hover:border-blue-400 pl-2">
+            <a>
+              <h6>Pulse Hold Cue</h6>
+              <label class="switch"> 
+                <input type="checkbox">
+                <span onclick="togglePulse()" value="false" id="switchValue" class="sliderSwitch round"></span>
+              </label>
+            </a>
+          </li>
+      </div>
     </div>
+  </nav>
     <!-- end of side bar -->
     <!-- start of directions -->
-    <div id="main">
-      <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Welcome to our visual Breath Guide</span>
-      <h2>Directions:</h2>
-      <p>
-        <ul>1) Use the menu to customize your guided breath experience (3 horizontal bars).</ul>
-        <ul>2) Select a breathing cadence using the slide bars.</ul>
-        <ul>3) Select a duration for your session.</ul>
-        <ul>4) Add any visual or auditory customization you prefer.</ul>
-        <ul>5) Click <a href="#" onclick="start();">start</a> and enjoy!</ul>
-      </p>
-      <div id="endSessionEarly">
-        <button class="endEarlyButton" onclick="endEarlyButton()">End Session Early</button>
+    <!-- <div id="main" class="min-h-screen bg-gray-100 py-6 flex flex-col justify-center sm:py-12">
+      <div class="py-3 sm:max-w-xl sm:mx-auto">
+        <div class="absolute inset-0 bg-gradient-to-r from-cyan-400 to-light-blue-500 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl">
+          <div class="px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20">
+            <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Welcome to our visual Breath Guide</span>
+            <div>
+              <h2>Directions:</h2>
+            </div>
+            
+            <p>
+              <ul>1) Use the menu to customize your guided breath experience (3 horizontal bars).</ul>
+              <ul>2) Select a breathing cadence using the slide bars.</ul>
+              <ul>3) Select a duration for your session.</ul>
+              <ul>4) Add any visual or auditory customization you prefer.</ul>
+              <ul>5) Click <a href="#" onclick="start();">start</a> and enjoy!</ul>
+            </p>
+            <div id="endSessionEarly">
+              <button class="endEarlyButton" onclick="endEarlyButton()">End Session Early</button>
+            </div>
+            <div class="timer" id="countdownDiv">
+            <h2>Time Left: <span id='countdown'></span></h2>
+          
+          
+          
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="timer" id="countdownDiv">
-        <h2>Time Left: <span id='countdown'></span></h2>
+    </div> -->
+    <!-- end of directions -->
+
+    <!-- Start of New Container -->
+  <!-- Container (Light BLue) -->
+  <div id="main1" class="min-h-4/6 bg-blue-50 py-6 flex flex-col justify-center">
+    <!-- Container for Two Boxes -->
+    <div class="relative py-3 sm:mx-auto">
+      <!-- Blue Div (tilted)-->
+      <div class="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-400 shadow-lg transform -skew-y-6 sm:skew-y-2 sm:-rotate-6 sm:rounded-3xl"></div>
+      <!-- Div text context -->
+      <div class="relative sm:mx-auto px-4 pt-4 bg-white shadow-lg sm:rounded-3xl">
+
+        <div class="max-w-screen mx-auto">
+          <div>
+            <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Welcome to our visual Breath Guide</span>
+          </div>
+            <div class="pt-8 pb-2 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
+              <p class="font-bold text-gray-700 sm:text-lg">Directions:</p>
+              <ul class="list-disc space-y-2">
+                <li class="flex items-start">
+                  <span class="h-6 flex items-center sm:h-7">
+                    <svg class="flex-shrink-0 h-5 w-5 blue-500" viewBox="0 0 20 20" fill="blue-500">
+                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                    </svg>
+                  </span>
+                  <p class="ml-2">
+                    Use the menu to customize your guided breath experience (3 horizontal bars).
+                  </p>
+                </li>
+                <li class="flex items-start">
+                  <span class="h-6 flex items-center sm:h-7">
+                    <svg class="flex-shrink-0 h-5 w-5 text-cyan-500" viewBox="0 0 20 20" fill="currentColor">
+                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                    </svg>
+                  </span>
+                  <p class="ml-2">
+                    Select a breathing cadence using the slide bars.
+                  </p>
+                </li>
+                <li class="flex items-start">
+                  <span class="h-6 flex items-center sm:h-7">
+                    <svg class="flex-shrink-0 h-5 w-5 text-cyan-500" viewBox="0 0 20 20" fill="currentColor">
+                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                    </svg>
+                  </span>
+                  <p class="ml-2">
+                    Select a duration for your session.
+                  </p>
+                </li>
+                <li class="flex items-start">
+                  <span class="h-6 flex items-center sm:h-7">
+                    <svg class="flex-shrink-0 h-5 w-5 text-cyan-500" viewBox="0 0 20 20" fill="currentColor">
+                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                    </svg>
+                  </span>
+                  <p class="ml-2">
+                    Add any visual or auditory customization you prefer.
+                  </p>
+                </li>
+                <li class="flex items-start">
+                  <span class="h-6 flex items-center sm:h-7">
+                    <svg class="flex-shrink-0 h-5 w-5 text-cyan-500" viewBox="0 0 20 20" fill="currentColor">
+                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                    </svg>
+                  </span>
+                  <p class="ml-2">
+                    Click <a href="#" onclick="start();">start</a> and enjoy!
+                  </p>
+                </li>
+              </ul>
+            </div>
+            <div id="endSessionEarly" class="pt-6 text-base leading-6 font-bold sm:text-lg sm:leading-7">
+              <button class="endEarlyButton" onclick="endEarlyButton()">End Session Early</button>
+            </div>
+            <div class="timer" id="countdownDiv">
+            <h2>Time Left: <span id='countdown'></span></h2>
+            </div>
+          </div>
       </div>
     </div>
-    <!-- end of directions -->
+  </div>
+
+    <!-- End of New Container -->
 
     <div class="circleContainer">
       <div id="circle" class="circle blossom1">
