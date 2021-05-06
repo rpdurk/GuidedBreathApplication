@@ -47,6 +47,19 @@ function toggleCountdown() {
     }
 }
 
+let visualCountdownOn = false;
+
+function toggleVisualCountdown() {
+    visualCountdownOn = !visualCountdownOn;
+    if(visualCountdownOn){
+        let visualCountdownDiv = document.getElementById("countDownText");
+        visualCountdownDiv.classList.remove("hidden");
+    } else {
+        let visualCountdownDiv = document.getElementById("countDownText");
+        visualCountdownDiv.classList.add("hidden");
+    }
+}
+
 let endEarlyButtonOn = false;
 
 function toggleEndEarlyButton() {

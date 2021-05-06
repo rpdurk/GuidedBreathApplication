@@ -130,26 +130,9 @@ function callGo() {
 
 function doCountdown(timeUtilNextEvent, callback) {
  timeout = setTimeout(function() {
-   callback();
+  callback();
  }, timeUtilNextEvent * 1000);
  timeouts.push(timeout);
-
- // make three if statements for the situation of less than 4, 3, 2, or 1 second values
-//  if (timeUtilNextEvent >= 4 && audioCountdownOn) {
-//    timeout = setTimeout(function() {
-//      // don't play if end session was clicked
-//      if (!endSessionEarly) {
-//      let threeSound  = audioFiles.threeSound;
-//      threeSound.load();
-//      threeSound.play();
-//     //  console.log('I Said three!');
-//      setTimeout(function() {
-//        threeSound.pause();
-//      }, 1000)
-//     }
-//    }, (timeUtilNextEvent - 3) * 1000);
-//    timeouts.push(timeout);
-//  }
 
  if (timeUtilNextEvent >= 3 && audioCountdownOn) {
    timeout = setTimeout(function() {
@@ -190,33 +173,42 @@ function doCountdown(timeUtilNextEvent, callback) {
 //   timeouts.push(timeout);
  
 //   // make 30 if statements for the situation of less than 1-30, 
-//   if (timeUtilNextEvent >= 30 && visualCountdownOn) {
+//   if (timeUtilNextEvent >= 4 && visualCountdownOn) {
 //     timeout = setTimeout(function() {
 //       if (!endSessionEarly) {
-//       let countText = getCountText();
-//           countText.innerHTML = "30";
-//      //  console.log('3o Seconds Left!');
+//       let countText = getCountDownText();
+//           countText.innerHTML = "3";
+//       // console.log('3o Seconds Left!');
 //       setTimeout(function() {
-//         countText.innerHTML = " ";
 //       }, 1000)
 //      }
-//     }, (timeUtilNextEvent - 29) * 1000);
+//     }, (timeUtilNextEvent - 3) * 1000);
 //     timeouts.push(timeout);
 //   }
  
-//   if (timeUtilNextEvent >= 3 && audioCountdownOn) {
+//   if (timeUtilNextEvent >= 3 && visualCountdownOn) {
 //     timeout = setTimeout(function() {
-//       // don't play if end session was clicked
 //       if (!endSessionEarly) {
-//        let twoSound  = audioFiles.twoSound;
-//        twoSound.load();
-//        twoSound.play();
-//        //  console.log('I Said two!');
-//        setTimeout(function() {
-//          twoSound.pause();
-//        }, 1000)
+//       let countText = getCountDownText();
+//           countText.innerHTML = "2";
+//       // console.log('2 Seconds Left!');
+//       setTimeout(function() {
+//       }, 1000)
 //      }
 //     }, (timeUtilNextEvent - 2) * 1000);
+//     timeouts.push(timeout);
+//   }
+
+//   if (timeUtilNextEvent >= 2 && visualCountdownOn) {
+//     timeout = setTimeout(function() {
+//       if (!endSessionEarly) {
+//       let countText = getCountDownText();
+//           countText.innerHTML = "1";
+//       console.log('1 Seconds Left!');
+//       setTimeout(function() {
+//       }, 1000)
+//      }
+//     }, (timeUtilNextEvent - 1) * 1000);
 //     timeouts.push(timeout);
 //   }
 //  }
@@ -247,6 +239,7 @@ function expand() {
  // console.log("Expanding!");
 
  doCountdown(inhale, holdExpand);
+ doVisualCountdown(inhale, holdExpand);
 }
 
 function holdExpand() {
@@ -272,6 +265,7 @@ function holdExpand() {
  // console.log("Holding after expand!");
 
  doCountdown(inhaleHold, shrink);
+ doVisualCountdown(inhaleHold, shrink);
 }
 
 function shrink(end) {
@@ -296,6 +290,7 @@ function shrink(end) {
  playShrink();
 
  doCountdown(exhale, holdShrink);
+ doVisualCountdown(exhale, holdShrink);
 }
 
 function holdShrink() {
@@ -321,6 +316,7 @@ function holdShrink() {
  playShrinkHold();
 
  doCountdown(exhaleHold, expand);
+ doVisualCountdown(exhaleHold, expand);
 }
 
 function shouldEnd() {
@@ -333,6 +329,10 @@ function getCircle() {
 
 function getActionText() {
  return document.getElementById('actionText');
+}
+
+function getCountDownText() {
+  return document.getElementById('countDownText');
 }
 
 function playExpand() {

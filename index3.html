@@ -11,152 +11,160 @@
     <link rel="stylesheet" href="assets/css/circleStyle.css">
     <link rel="stylesheet" href="assets/css/circleMoveStyle.css">
     <link rel="stylesheet" href="assets/css/modalStyle.css">
-    
-
   </head>
-  <body>
-    <div class="flex">
-      <div class="w-full">
-        <nav class=" px-2 py-3 bg-gradient-to-r from-blue-500 to-pink-400 shadow-lg rounded">
-          <div class="container mx-auto flex items-center justify-between">
-            <div class="w-full relative flex justify-between lg:w-auto">
-              <h1 class="text-lg font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap text-white">
-                Guided Breath Application
-              </h1>
-            </div>
-            <div class="lg:flex " id="example-collapse-navbar">
-              <ul class="flex flex-col lg:flex-row list-none lg:ml-auto">
-                <li class="nav-item">
-                  <a class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75" type="button" onclick="toggleNav()">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
-                    </svg> Customization
+
+<body>
+  <div class="flex">
+    <div class="w-full">
+      <nav class=" px-2 py-3 bg-gradient-to-r from-blue-500 to-pink-400 shadow-lg rounded">
+        <div class="container mx-auto flex items-center justify-between">
+          <div class="w-full relative flex justify-between lg:w-auto">
+            <h1 class="text-lg font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap text-white">
+              Guided Breath Application
+            </h1>
+          </div>
+          <div class="lg:flex " id="example-collapse-navbar">
+            <ul class="flex flex-col lg:flex-row list-none lg:ml-auto">
+              <li class="nav-item">
+                <a class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75" type="button" onclick="toggleNav()">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+                  </svg> Customization
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div id="collapsableNav" class="bg-white flex justify-around rounded hidden">
+          <div class="breathSettings flex-1 flex-wrap justify-around px-4">
+            <p class="text-center text-lg font-bold">Breath Cycle</p>
+              <ul class=" list-none">
+                <li class="items-center py-2 border-l-4 border-transparent hover:border-blue-400 pl-2">
+                    <a>
+                        <div id='divInhale' class="slidecontainer" >
+                            <h6>Inhale Time: <span id='chosenInhale'></span>s</h6>
+                        <input type="range" min="1" max="30" value="1" class="slider" id="inhaleValue">
+                        </div>
+                    </a>
+                </li>
+                <li class="items-center py-2 border-l-4 border-transparent hover:border-blue-400 pl-2">
+                  <a>
+                    <div id='divInhaleHold' class="slidecontainer" >
+                        <h6>Hold Time: <span id='chosenInhaleHold'></span>s</h6>
+                    <input type="range" min="0" max="30" value="3" class="slider" id="inhaleHoldValue">
+                    </div>
                   </a>
                 </li>
-              </ul>
-            </div>
+                <li class="items-center py-2 border-l-4 border-transparent hover:border-blue-400 pl-2">
+                  <a>
+                    <div id='divExhale' class="slidecontainer">
+                        <h6>Exhale Time: <span id='chosenExhale'></span>s</h6>
+                      <input type="range" min="1" max="30" value="2" class="slider" id="exhaleValue">
+                    </div>
+                  </a>
+                </li>
+                <li class="items-center py-2 border-l-4 border-transparent hover:border-blue-400 pl-2">
+                  <a>
+                    <div id='divExhaleHold' class="slidecontainer">
+                        <h6>Hold Time: <span id='chosenExhaleHold'></span>s</h6>
+                      <input type="range" min="0" max="30" value="0" class="slider" id="exhaleHoldValue">
+                    </div>
+                  </a>
+                </li>
+                <li class="items-center py-2 border-l-4 border-transparent hover:border-blue-400 pl-2">
+                  <a>
+                    <div id='divDuration' class="slidecontainer">
+                        <h6>Session Duration: <span id='chosenDuration'></span>min(s)</h6>
+                      <input type="range" min="1" max="60" value="20" class="slider" id="durationValue">
+                    </div>
+                  </a>
+                </li>
+            </ul>
           </div>
-          <div id="collapsableNav" class="bg-white flex justify-around rounded hidden">
-            <div class="breathSettings flex-1 flex-wrap justify-around px-4">
-              <p class="text-center text-lg font-bold">Breath Cycle</p>
-                <ul class=" list-none">
-                  <li class="items-center py-2 border-l-4 border-transparent hover:border-blue-400 pl-2">
-                      <a>
-                          <div id='divInhale' class="slidecontainer" >
-                              <h6>Inhale Time: <span id='chosenInhale'></span>s</h6>
-                          <input type="range" min="1" max="30" value="1" class="slider" id="inhaleValue">
-                          </div>
-                      </a>
-                  </li>
-                  <li class="items-center py-2 border-l-4 border-transparent hover:border-blue-400 pl-2">
+          <div class="auditoryCues flex-1 flex-wrap justify-around px-4">
+            <p class="text-center text-lg font-bold">Auditory Options</p>
+              <ul>
+                <li class="items-center py-2 border-l-4 border-transparent hover:border-blue-400 pl-2">
                     <a>
-                      <div id='divInhaleHold' class="slidecontainer" >
-                          <h6>Hold Time: <span id='chosenInhaleHold'></span>s</h6>
-                      <input type="range" min="0" max="30" value="3" class="slider" id="inhaleHoldValue">
-                      </div>
-                    </a>
-                  </li>
-                  <li class="items-center py-2 border-l-4 border-transparent hover:border-blue-400 pl-2">
-                    <a>
-                      <div id='divExhale' class="slidecontainer">
-                          <h6>Exhale Time: <span id='chosenExhale'></span>s</h6>
-                        <input type="range" min="1" max="30" value="2" class="slider" id="exhaleValue">
-                      </div>
-                    </a>
-                  </li>
-                  <li class="items-center py-2 border-l-4 border-transparent hover:border-blue-400 pl-2">
-                    <a>
-                      <div id='divExhaleHold' class="slidecontainer">
-                          <h6>Hold Time: <span id='chosenExhaleHold'></span>s</h6>
-                        <input type="range" min="0" max="30" value="0" class="slider" id="exhaleHoldValue">
-                      </div>
-                    </a>
-                  </li>
-                  <li class="items-center py-2 border-l-4 border-transparent hover:border-blue-400 pl-2">
-                    <a>
-                      <div id='divDuration' class="slidecontainer">
-                          <h6>Session Duration: <span id='chosenDuration'></span>min(s)</h6>
-                        <input type="range" min="1" max="60" value="20" class="slider" id="durationValue">
-                      </div>
-                    </a>
-                  </li>
-              </ul>
-            </div>
-            <div class="auditoryCues flex-1 flex-wrap justify-around px-4">
-              <p class="text-center text-lg font-bold">Auditory Options</p>
-                <ul>
-                  <li class="items-center py-2 border-l-4 border-transparent hover:border-blue-400 pl-2">
-                      <a>
-                        <h6>Action Audio</h6>
-                        <label class="switch"> 
-                          <input type="checkbox">
-                          <span onclick="toggleAudio()" value="false" id="switchValue" class="sliderSwitch round"></span>
-                        </label>
-                      </a>
-                    </li>
-                    <li class="items-center py-2 border-l-4 border-transparent hover:border-blue-400 pl-2">
-                      <a>
-                        <h6>Countdown Audio</h6>
-                        <label class="switch"> 
-                          <input type="checkbox">
-                          <span onclick="toggleAudioCountdown()" value="false" id="switchValue" class="sliderSwitch round"></span>
-                        </label>
-                      </a>
-                    </li>
-                  </ul>
-              </div>
-                <div class="visualCues flex-1 flex-wrap justify-around px-4">
-                  <p class="text-center text-lg font-bold">Visual Options</p>
-                  <ul>
-                    <li class="items-center py-2 border-l-4 border-transparent hover:border-blue-400 pl-2">
-                      <a>
-                        <h6>Color Hold Cue</h6>
-                        <label class="switch"> 
-                          <input type="checkbox">
-                          <span onclick="toggleColor()" value="false" id="switchValue" class="sliderSwitch round"></span>
-                        </label>
-                      </a>
-                    </li>
-                    <li class="items-center py-2 border-l-4 border-transparent hover:border-blue-400 pl-2">
-                      <a>
-                        <h6>Pulse Hold Cue</h6>
-                        <label class="switch"> 
-                          <input type="checkbox">
-                          <span onclick="togglePulse()" value="false" id="switchValue" class="sliderSwitch round"></span>
-                        </label>
-                      </a>
-                    </li>
-                  </ul>
-              </div>
-              <div class="displaysSettings flex-1 flex-wrap justify-around px-4">
-                <p class="text-center text-lg font-bold">Additional Options</p>
-                <ul>
-                  <li class="items-center py-2 border-l-4 border-transparent hover:border-blue-400 pl-2">
-                    <a>
-                      <h6>Show Countdown Timer</h6>
+                      <h6>Action Audio</h6>
                       <label class="switch"> 
                         <input type="checkbox">
-                        <span onclick="toggleCountdown()" value="false" id="switchValue" class="sliderSwitch round"></span>
+                        <span onclick="toggleAudio()" value="false" id="switchValue" class="sliderSwitch round"></span>
                       </label>
                     </a>
                   </li>
                   <li class="items-center py-2 border-l-4 border-transparent hover:border-blue-400 pl-2">
                     <a>
-                      <h6>Option to End Early</h6>
+                      <h6>Countdown Audio</h6>
                       <label class="switch"> 
                         <input type="checkbox">
-                        <span onclick="toggleEndEarlyButton()" value="false" id="switchValue" class="sliderSwitch round"></span>
+                        <span onclick="toggleAudioCountdown()" value="false" id="switchValue" class="sliderSwitch round"></span>
                       </label>
                     </a>
                   </li>
                 </ul>
-              </div>
-          </div>
-        </nav>
-      </div>
+            </div>
+              <div class="visualCues flex-1 flex-wrap justify-around px-4">
+                <p class="text-center text-lg font-bold">Visual Options</p>
+                <ul>
+                  <li class="items-center py-2 border-l-4 border-transparent hover:border-blue-400 pl-2">
+                    <a>
+                      <h6>Color Hold Cue</h6>
+                      <label class="switch"> 
+                        <input type="checkbox">
+                        <span onclick="toggleColor()" value="false" id="switchValue" class="sliderSwitch round"></span>
+                      </label>
+                    </a>
+                  </li>
+                  <li class="items-center py-2 border-l-4 border-transparent hover:border-blue-400 pl-2">
+                    <a>
+                      <h6>Pulse Hold Cue</h6>
+                      <label class="switch"> 
+                        <input type="checkbox">
+                        <span onclick="togglePulse()" value="false" id="switchValue" class="sliderSwitch round"></span>
+                      </label>
+                    </a>
+                  </li>
+                  <li class="items-center py-2 border-l-4 border-transparent hover:border-blue-400 pl-2">
+                    <a>
+                      <h6>Visual Countdown Cue</h6>
+                      <label class="switch"> 
+                        <input type="checkbox">
+                        <span onclick="toggleVisualCountdown()" value="false" id="switchValue" class="sliderSwitch round"></span>
+                      </label>
+                    </a>
+                  </li>
+                </ul>
+            </div>
+            <div class="displaysSettings flex-1 flex-wrap justify-around px-4">
+              <p class="text-center text-lg font-bold">Additional Options</p>
+              <ul>
+                <li class="items-center py-2 border-l-4 border-transparent hover:border-blue-400 pl-2">
+                  <a>
+                    <h6>Show Countdown Timer</h6>
+                    <label class="switch"> 
+                      <input type="checkbox">
+                      <span onclick="toggleCountdown()" value="false" id="switchValue" class="sliderSwitch round"></span>
+                    </label>
+                  </a>
+                </li>
+                <li class="items-center py-2 border-l-4 border-transparent hover:border-blue-400 pl-2">
+                  <a>
+                    <h6>Option to End Early</h6>
+                    <label class="switch"> 
+                      <input type="checkbox">
+                      <span onclick="toggleEndEarlyButton()" value="false" id="switchValue" class="sliderSwitch round"></span>
+                    </label>
+                  </a>
+                </li>
+              </ul>
+            </div>
+        </div>
+      </nav>
     </div>
+  </div>
 
-        <!-- Start of New Container -->
+  <!-- Start of New Container -->
   <!-- Container (Light BLue) -->
   <div id="main1" class="min-h-4/6 bg-blue-50 py-6 flex flex-col justify-center">
     <!-- Container for Two Boxes -->
@@ -168,7 +176,7 @@
 
         <div class="max-w-screen mx-auto">
           <div style="font-size:30px">
-             Welcome to our visual Breath Guide
+            Welcome to our visual Breath Guide
           </div>
             <div class="pt-4 pb-2 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
               <p class="font-bold text-gray-700 sm:text-lg">Directions:</p>
@@ -238,9 +246,12 @@
   <div class="circleContainer">
     <div id="circle" class="circle blossom1 flex justify-center items-center">
       <h1 id ="actionText" class="actionText flex justify-center items-center"></h1>
-      <h1 id ="countDownText" class="countDownText flex justify-center items-center"></h1>
     </div>
   </div>
+  <div>
+    <h1 id ="countDownText" class="countDownText flex justify-center items-center hidden text-lg font-bold inline-block text-blue"></h1>
+  </div>
+
 
   <!-- End Early and Timer -->
   <div class="flex justify-around inline-block">
@@ -269,5 +280,5 @@
   <script src="./assets/javascript/breathSelectionScript.js"></script>
   <script src="./assets/javascript/main.js"></script>
 
-  </body>
+</body>
 </html>
