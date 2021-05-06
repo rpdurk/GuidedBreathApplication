@@ -239,7 +239,7 @@ function expand() {
  // console.log("Expanding!");
 
  doCountdown(inhale, holdExpand);
- doVisualCountdown(inhale, holdExpand);
+//  doVisualCountdown(inhale, holdExpand);
 }
 
 function holdExpand() {
@@ -265,8 +265,8 @@ function holdExpand() {
  // console.log("Holding after expand!");
 
  doCountdown(inhaleHold, shrink);
- doVisualCountdown(inhaleHold, shrink);
-}
+//  doVisualCountdown(inhaleHold, shrink);
+// }
 
 function shrink(end) {
  if (inhaleHold > 0) {
@@ -290,7 +290,7 @@ function shrink(end) {
  playShrink();
 
  doCountdown(exhale, holdShrink);
- doVisualCountdown(exhale, holdShrink);
+//  doVisualCountdown(exhale, holdShrink);
 }
 
 function holdShrink() {
@@ -316,7 +316,7 @@ function holdShrink() {
  playShrinkHold();
 
  doCountdown(exhaleHold, expand);
- doVisualCountdown(exhaleHold, expand);
+//  doVisualCountdown(exhaleHold, expand);
 }
 
 function shouldEnd() {
