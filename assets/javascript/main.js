@@ -52,6 +52,9 @@ function start() {
   let directionsDiv = document.getElementById("main1");
   directionsDiv.classList.add("hidden");
 
+  let navDiv = document.getElementById("collapsableNav");
+  navDiv.classList.add("hidden");
+
  // Clear all animations
  let circle = getCircle();
  // remove hold animation
