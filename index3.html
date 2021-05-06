@@ -162,7 +162,7 @@
     <!-- Container for Two Boxes -->
     <div class="relative py-3 sm:mx-auto">
       <!-- Blue Div (tilted)-->
-      <div class="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-400 shadow-lg transform -skew-y-6 sm:skew-y-2 sm:-rotate-6 sm:rounded-3xl"></div>
+      <div class="absolute inset-0 bg-gradient-to-r from-purple-400 to-blue-500 shadow-lg transform -skew-y-6 sm:skew-y-2 sm:-rotate-6 sm:rounded-3xl"></div>
       <!-- Div text context -->
       <div class="relative sm:mx-auto px-4 pt-4 bg-white shadow-lg sm:rounded-3xl">
 
@@ -223,30 +223,34 @@
                       <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
                     </svg>
                   </span>
-                  <p class="ml-2">
-                    Click <a href="#" onclick="start();">start</a> and enjoy!
+                  <p class="ml-2 inline-block">
+                    Click <button class="inline-block px-4 py-1 mb-1 text-base font-semibold rounded-lg block  border-b border-blue-300 bg-blue-200 hover:bg-blue-800 text-blue-700 hover:text-blue-100" onclick="start()">start</button> and enjoy!
                   </p>
                 </li>
               </ul>
-            </div>
-            <div id="endSessionEarly" class="pt-6 text-base leading-6 font-bold sm:text-lg sm:leading-7">
-              <button class="endEarlyButton" onclick="endEarlyButton()">End Session Early</button>
-            </div>
-            <div class="timer" id="countdownDiv">
-            <h2>Time Left: <span id='countdown'></span></h2>
             </div>
           </div>
       </div>
     </div>
   </div>
 
-    <!-- End of New Container -->
-
-    <div class="circleContainer">
-      <div id="circle" class="circle blossom1 flex justify-center items-center">
+  <!-- Circle -->
+  <div class="circleContainer">
+    <div id="circle" class="circle blossom1 flex justify-center items-center">
       <h1 id ="actionText" class="actionText flex justify-center items-center"></h1>
-      </div>
+      <h1 id ="countDownText" class="countDownText flex justify-center items-center"></h1>
     </div>
+  </div>
+
+  <!-- End Early and Timer -->
+  <div class="flex justify-around inline-block">
+    <div class="timer flex justify-around inline-block" id="countdownDiv">
+      <p class="text-lg font-bold">Time Left: <span id='countdown'></span></p>
+    </div>
+    <div id="endSessionEarly" class="flex justify-around inline-block">
+      <button class="endEarlyButton px-9 py-4 mb-4 text-base font-semibold rounded-lg block  border-b border-blue-300 bg-blue-200 hover:bg-blue-800 text-blue-700" onclick="endEarlyButton()">End Session Early</button>
+    </div>
+  </div>
 
   <!-- Modal Div and Content -->
   <div id="sessionDetailsModal" class="modal">
