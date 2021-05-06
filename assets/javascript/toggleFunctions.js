@@ -1,3 +1,16 @@
+let navOpen = false;
+
+function toggleNav() {
+    navOpen = !navOpen;
+    if(navOpen){
+        let navDiv = document.getElementById("collapsableNav");
+        navDiv.classList.add("hidden");
+    } else {
+        let navDiv = document.getElementById("collapsableNav");
+        navDiv.classList.remove("hidden");
+    }   
+}
+
 let audioOn = false;
 
 function toggleAudio() {
