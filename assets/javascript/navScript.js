@@ -13,4 +13,6 @@ function openNav() {
   function closeModal() {
     modal = document.getElementById("sessionDetailsModal");
     modal.style.display = "none";
+    let directionsDiv = document.getElementById("collapsableNav");
+    directionsDiv.classList.remove("hidden");
   }

@@ -17,7 +17,7 @@
   <body>
     <div class="flex py-2">
       <div class="w-full">
-        <nav class=" px-2 py-3 bg-blue-500 rounded">
+        <nav class=" px-2 py-3 bg-gradient-to-r from-blue-500 to-purple-400 shadow-lg rounded">
           <div class="container mx-auto flex items-center justify-between">
             <div class="w-full relative flex justify-between lg:w-auto">
               <h1 class="text-lg font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap text-white">
@@ -36,8 +36,7 @@
               </ul>
             </div>
           </div>
-
-          <div id="collapsableNav" class="bg-white flex justify-around rounded">
+          <div id="collapsableNav" class="bg-white flex justify-around rounded hidden">
             <div class="breathSettings flex-1 flex-wrap justify-around px-4">
               <p class="text-center text-lg font-bold">Breath Cycle</p>
                 <ul class=" list-none">
@@ -157,10 +156,114 @@
       </div>
     </div>
 
-      <script src="./assets/javascript/navScript.js"></script>
-      <script src="./assets/javascript/toggleFunctions.js"></script>
-      <script src="./assets/javascript/breathSelectionScript.js"></script>
-      <script src="./assets/javascript/main.js"></script>
-      
+        <!-- Start of New Container -->
+  <!-- Container (Light BLue) -->
+  <div id="main1" class="min-h-4/6 bg-blue-50 py-6 flex flex-col justify-center">
+    <!-- Container for Two Boxes -->
+    <div class="relative py-3 sm:mx-auto">
+      <!-- Blue Div (tilted)-->
+      <div class="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-400 shadow-lg transform -skew-y-6 sm:skew-y-2 sm:-rotate-6 sm:rounded-3xl"></div>
+      <!-- Div text context -->
+      <div class="relative sm:mx-auto px-4 pt-4 bg-white shadow-lg sm:rounded-3xl">
+
+        <div class="max-w-screen mx-auto">
+          <div style="font-size:30px">
+             Welcome to our visual Breath Guide
+          </div>
+            <div class="pt-4 pb-2 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
+              <p class="font-bold text-gray-700 sm:text-lg">Directions:</p>
+              <ul class="list-disc space-y-2">
+                <li class="flex items-start">
+                  <span class="h-6 flex items-center sm:h-7">
+                    <svg class="flex-shrink-0 h-5 w-5 blue-500" viewBox="0 0 20 20" fill="blue-500">
+                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                    </svg>
+                  </span>
+                  <p class="ml-2 inline">
+                    Click 
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+                    </svg>
+                    to optimize your experience.
+                  </p>
+                </li>
+                <li class="flex items-start">
+                  <span class="h-6 flex items-center sm:h-7">
+                    <svg class="flex-shrink-0 h-5 w-5 text-cyan-500" viewBox="0 0 20 20" fill="currentColor">
+                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                    </svg>
+                  </span>
+                  <p class="ml-2">
+                    Select a breathing cadence using the slide bars.
+                  </p>
+                </li>
+                <li class="flex items-start">
+                  <span class="h-6 flex items-center sm:h-7">
+                    <svg class="flex-shrink-0 h-5 w-5 text-cyan-500" viewBox="0 0 20 20" fill="currentColor">
+                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                    </svg>
+                  </span>
+                  <p class="ml-2">
+                    Select a duration for your session.
+                  </p>
+                </li>
+                <li class="flex items-start">
+                  <span class="h-6 flex items-center sm:h-7">
+                    <svg class="flex-shrink-0 h-5 w-5 text-cyan-500" viewBox="0 0 20 20" fill="currentColor">
+                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                    </svg>
+                  </span>
+                  <p class="ml-2">
+                    Add any visual or auditory customization you prefer.
+                  </p>
+                </li>
+                <li class="flex items-start">
+                  <span class="h-6 flex items-center sm:h-7">
+                    <svg class="flex-shrink-0 h-5 w-5 text-cyan-500" viewBox="0 0 20 20" fill="currentColor">
+                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                    </svg>
+                  </span>
+                  <p class="ml-2">
+                    Click <a href="#" onclick="start();">start</a> and enjoy!
+                  </p>
+                </li>
+              </ul>
+            </div>
+            <div id="endSessionEarly" class="pt-6 text-base leading-6 font-bold sm:text-lg sm:leading-7">
+              <button class="endEarlyButton" onclick="endEarlyButton()">End Session Early</button>
+            </div>
+            <div class="timer" id="countdownDiv">
+            <h2>Time Left: <span id='countdown'></span></h2>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+
+    <!-- End of New Container -->
+
+    <div class="circleContainer">
+      <div id="circle" class="circle blossom1 flex justify-center items-center">
+      <h1 id ="actionText" class="actionText flex justify-center items-center"></h1>
+      </div>
+    </div>
+
+  <!-- Modal Div and Content -->
+  <div id="sessionDetailsModal" class="modal">
+    <div class="modal-content">
+      <a><span class="closeModal" onclick="closeModal()">&times;</span></a>
+      <p>You have finished your breath session!</p>
+      <p>You completed<span id='timeCompleted'></span> of breath work!</p>
+      <p>You used a <span id='inhaleTime'></span><span id='inhaleHoldTime'></span><span id='exhaleTime'></span><span id='exhaleHoldTime'></span></p>
+      <p>Great work and have a nice day!</p>
+    </div>
+  </div>
+  <!-- End of Modal Div -->
+
+  <script src="./assets/javascript/navScript.js"></script>
+  <script src="./assets/javascript/toggleFunctions.js"></script>
+  <script src="./assets/javascript/breathSelectionScript.js"></script>
+  <script src="./assets/javascript/main.js"></script>
+
   </body>
 </html>

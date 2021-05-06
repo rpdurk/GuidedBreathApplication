@@ -49,6 +49,9 @@ function start() {
    clearTimeout(timeout);
  });
 
+  let directionsDiv = document.getElementById("main1");
+  directionsDiv.classList.add("hidden");
+
  // Clear all animations
  let circle = getCircle();
  // remove hold animation

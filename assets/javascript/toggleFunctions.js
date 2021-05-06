@@ -4,10 +4,10 @@ function toggleNav() {
     navOpen = !navOpen;
     if(navOpen){
         let navDiv = document.getElementById("collapsableNav");
-        navDiv.classList.add("hidden");
+        navDiv.classList.remove("hidden");
     } else {
         let navDiv = document.getElementById("collapsableNav");
-        navDiv.classList.remove("hidden");
+        navDiv.classList.add("hidden");
     }   
 }
 
