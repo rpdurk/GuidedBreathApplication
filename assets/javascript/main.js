@@ -266,7 +266,7 @@ function holdExpand() {
 
  doCountdown(inhaleHold, shrink);
 //  doVisualCountdown(inhaleHold, shrink);
-// }
+}
 
 function shrink(end) {
  if (inhaleHold > 0) {
@@ -400,6 +400,11 @@ function getEndAnimation() {
  return document.getElementById('actionText');
 }
 
+function returnDirections(){
+  let startDiv = document.getElementById('main1');
+  startDiv.classList.remove('hidden');
+}
+
 function endEarly() {
  let finishedAnimationText = getActionText();
  finishedAnimationText.innerHTML = finished;
@@ -456,6 +461,18 @@ function endEarlyDetails() {
 
  // update end session early boolean
  endSessionEarly = !endSessionEarly;
+
+  // update cusotmization panel boolean to be closed
+
+  if(navOpen = true){
+      navOpen = !navOpen;
+      let navDiv = document.getElementById("collapsableNav");
+      navDiv.classList.add("hidden");
+    }
+
+  // make directions appear
+  returnDirections();
+
  // stop timer if finished selected
  time = 0;
 }

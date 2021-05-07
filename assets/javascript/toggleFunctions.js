@@ -2,6 +2,7 @@ let navOpen = false;
 
 function toggleNav() {
     navOpen = !navOpen;
+    // console.log(navOpen);
     if(navOpen){
         let navDiv = document.getElementById("collapsableNav");
         navDiv.classList.remove("hidden");
