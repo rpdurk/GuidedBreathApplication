@@ -134,6 +134,28 @@ function doCountdown(timeUtilNextEvent, callback) {
  }, timeUtilNextEvent * 1000);
  timeouts.push(timeout);
 
+ if (visualCountdownOn) {
+   for (i = timeUtilNextEvent - 1; i > 0; i--) {
+    const countdownValue = i;
+    timeout = setTimeout(function() {
+      if (!endSessionEarly) {
+        let countText = getCountDownText();
+        countText.innerHTML = countdownValue.toString();
+      }
+    }, (timeUtilNextEvent - i) * 1000);
+    
+    timeouts.push(timeout);
+   }
+
+   timeout = setTimeout(function() {
+    if (!endSessionEarly) {
+      let countText = getCountDownText();
+      countText.innerHTML = "";
+    }
+  }, timeUtilNextEvent  * 1000);
+  timeouts.push(timeout);
+ }
+
  if (timeUtilNextEvent >= 3 && audioCountdownOn) {
    timeout = setTimeout(function() {
      // don't play if end session was clicked
@@ -166,53 +188,6 @@ function doCountdown(timeUtilNextEvent, callback) {
  }
 }
 
-// function doVisualCountdown(timeUtilNextEvent, callback) {
-//   timeout = setTimeout(function() {
-//     callback();
-//   }, timeUtilNextEvent * 1000);
-//   timeouts.push(timeout);
- 
-//   // make 30 if statements for the situation of less than 1-30, 
-//   if (timeUtilNextEvent >= 4 && visualCountdownOn) {
-//     timeout = setTimeout(function() {
-//       if (!endSessionEarly) {
-//       let countText = getCountDownText();
-//           countText.innerHTML = "3";
-//       // console.log('3o Seconds Left!');
-//       setTimeout(function() {
-//       }, 1000)
-//      }
-//     }, (timeUtilNextEvent - 3) * 1000);
-//     timeouts.push(timeout);
-//   }
- 
-//   if (timeUtilNextEvent >= 3 && visualCountdownOn) {
-//     timeout = setTimeout(function() {
-//       if (!endSessionEarly) {
-//       let countText = getCountDownText();
-//           countText.innerHTML = "2";
-//       // console.log('2 Seconds Left!');
-//       setTimeout(function() {
-//       }, 1000)
-//      }
-//     }, (timeUtilNextEvent - 2) * 1000);
-//     timeouts.push(timeout);
-//   }
-
-//   if (timeUtilNextEvent >= 2 && visualCountdownOn) {
-//     timeout = setTimeout(function() {
-//       if (!endSessionEarly) {
-//       let countText = getCountDownText();
-//           countText.innerHTML = "1";
-//       console.log('1 Seconds Left!');
-//       setTimeout(function() {
-//       }, 1000)
-//      }
-//     }, (timeUtilNextEvent - 1) * 1000);
-//     timeouts.push(timeout);
-//   }
-//  }
-
 function expand() {
  if (shouldEnd()) {
    shrink(true);
@@ -239,7 +214,6 @@ function expand() {
  // console.log("Expanding!");
 
  doCountdown(inhale, holdExpand);
-//  doVisualCountdown(inhale, holdExpand);
 }
 
 function holdExpand() {
@@ -265,7 +239,6 @@ function holdExpand() {
  // console.log("Holding after expand!");
 
  doCountdown(inhaleHold, shrink);
-//  doVisualCountdown(inhaleHold, shrink);
 }
 
 function shrink(end) {
@@ -290,7 +263,6 @@ function shrink(end) {
  playShrink();
 
  doCountdown(exhale, holdShrink);
-//  doVisualCountdown(exhale, holdShrink);
 }
 
 function holdShrink() {
@@ -316,7 +288,6 @@ function holdShrink() {
  playShrinkHold();
 
  doCountdown(exhaleHold, expand);
-//  doVisualCountdown(exhaleHold, expand);
 }
 
 function shouldEnd() {
@@ -463,7 +434,6 @@ function endEarlyDetails() {
  endSessionEarly = !endSessionEarly;
 
   // update cusotmization panel boolean to be closed
-
   if(navOpen = true){
       navOpen = !navOpen;
       let navDiv = document.getElementById("collapsableNav");
