@@ -49,6 +49,12 @@ function start() {
    clearTimeout(timeout);
  });
 
+  let directionsDiv = document.getElementById("main1");
+  directionsDiv.classList.add("hidden");
+
+  let navDiv = document.getElementById("collapsableNav");
+  navDiv.classList.add("hidden");
+
  // Clear all animations
  let circle = getCircle();
  // remove hold animation
@@ -124,25 +130,32 @@ function callGo() {
 
 function doCountdown(timeUtilNextEvent, callback) {
  timeout = setTimeout(function() {
-   callback();
+  callback();
  }, timeUtilNextEvent * 1000);
  timeouts.push(timeout);
 
- // make three if statements for the situation of less than 4, 3, 2, or 1 second values
-//  if (timeUtilNextEvent >= 4 && audioCountdownOn) {
+//  if (visualCountdownOn) {
+//    for (i = timeUtilNextEvent - 1; i > 0; i--) {
+//     const countdownValue = i;
+//     timeout = setTimeout(function() {
+//       if (!endSessionEarly) {
+//         let countText = getCountdownText();
+//         // countText.innerHTML = countdownValue.toString();
+//         // countText.innerHTML = " - " + countdownValue.toString();
+//         countText.innerHTML = `  - ${countdownValue.toString()}`;
+//       }
+//     }, (timeUtilNextEvent - i) * 1000);
+    
+//     timeouts.push(timeout);
+//    }
+
 //    timeout = setTimeout(function() {
-//      // don't play if end session was clicked
-//      if (!endSessionEarly) {
-//      let threeSound  = audioFiles.threeSound;
-//      threeSound.load();
-//      threeSound.play();
-//     //  console.log('I Said three!');
-//      setTimeout(function() {
-//        threeSound.pause();
-//      }, 1000)
+//     if (!endSessionEarly) {
+//       let countText = getCountdownText();
+//       countText.innerHTML = "";
 //     }
-//    }, (timeUtilNextEvent - 3) * 1000);
-//    timeouts.push(timeout);
+//   }, timeUtilNextEvent  * 1000);
+//   timeouts.push(timeout);
 //  }
 
  if (timeUtilNextEvent >= 3 && audioCountdownOn) {
@@ -175,6 +188,7 @@ function doCountdown(timeUtilNextEvent, callback) {
    }, (timeUtilNextEvent - 1) * 1000);
    timeouts.push(timeout);
  }
+ 
 }
 
 function expand() {
@@ -291,6 +305,10 @@ function getActionText() {
  return document.getElementById('actionText');
 }
 
+function getCountdownText() {
+  return document.getElementById('countdownText');
+}
+
 function playExpand() {
  const expandSound = audioFiles.expandSound;
  if(audioOn) {
@@ -356,6 +374,11 @@ function getEndAnimation() {
  return document.getElementById('actionText');
 }
 
+function returnDirections(){
+  let startDiv = document.getElementById('main1');
+  startDiv.classList.remove('hidden');
+}
+
 function endEarly() {
  let finishedAnimationText = getActionText();
  finishedAnimationText.innerHTML = finished;
@@ -412,6 +435,17 @@ function endEarlyDetails() {
 
  // update end session early boolean
  endSessionEarly = !endSessionEarly;
+
+  // update cusotmization panel boolean to be closed
+  if(navOpen = true){
+      navOpen = !navOpen;
+      let navDiv = document.getElementById("collapsableNav");
+      navDiv.classList.add("hidden");
+    }
+
+  // make directions appear
+  returnDirections();
+
  // stop timer if finished selected
  time = 0;
 }

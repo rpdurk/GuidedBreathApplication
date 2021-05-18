@@ -1,3 +1,17 @@
+let navOpen = false;
+
+function toggleNav() {
+    navOpen = !navOpen;
+
+    if(navOpen){
+        let navDiv = document.getElementById("collapsableNav");
+        navDiv.classList.remove("hidden");
+    } else {
+        let navDiv = document.getElementById("collapsableNav");
+        navDiv.classList.add("hidden");
+    }   
+}
+
 let audioOn = false;
 
 function toggleAudio() {
@@ -31,6 +45,19 @@ function toggleCountdown() {
         countdownDiv.style.display = "block";
     } else {
         countdownDiv.style.display = "none";
+    }
+}
+
+let visualCountdownOn = false;
+
+function toggleVisualCountdown() {
+    visualCountdownOn = !visualCountdownOn;
+    if(visualCountdownOn){
+        let visualCountdownDiv = document.getElementById("countdownText");
+        visualCountdownDiv.classList.remove("hidden");
+    } else {
+        let visualCountdownDiv = document.getElementById("countdownText");
+        visualCountdownDiv.classList.add("hidden");
     }
 }
 
