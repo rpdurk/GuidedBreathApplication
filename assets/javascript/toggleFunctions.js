@@ -53,10 +53,10 @@ let visualCountdownOn = false;
 function toggleVisualCountdown() {
     visualCountdownOn = !visualCountdownOn;
     if(visualCountdownOn){
-        let visualCountdownDiv = document.getElementById("countDownText");
+        let visualCountdownDiv = document.getElementById("countdownText");
         visualCountdownDiv.classList.remove("hidden");
     } else {
-        let visualCountdownDiv = document.getElementById("countDownText");
+        let visualCountdownDiv = document.getElementById("countdownText");
         visualCountdownDiv.classList.add("hidden");
     }
 }

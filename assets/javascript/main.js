@@ -134,27 +134,29 @@ function doCountdown(timeUtilNextEvent, callback) {
  }, timeUtilNextEvent * 1000);
  timeouts.push(timeout);
 
- if (visualCountdownOn) {
-   for (i = timeUtilNextEvent - 1; i > 0; i--) {
-    const countdownValue = i;
-    timeout = setTimeout(function() {
-      if (!endSessionEarly) {
-        let countText = getCountDownText();
-        countText.innerHTML = countdownValue.toString();
-      }
-    }, (timeUtilNextEvent - i) * 1000);
+//  if (visualCountdownOn) {
+//    for (i = timeUtilNextEvent - 1; i > 0; i--) {
+//     const countdownValue = i;
+//     timeout = setTimeout(function() {
+//       if (!endSessionEarly) {
+//         let countText = getCountdownText();
+//         // countText.innerHTML = countdownValue.toString();
+//         // countText.innerHTML = " - " + countdownValue.toString();
+//         countText.innerHTML = `  - ${countdownValue.toString()}`;
+//       }
+//     }, (timeUtilNextEvent - i) * 1000);
     
-    timeouts.push(timeout);
-   }
+//     timeouts.push(timeout);
+//    }
 
-   timeout = setTimeout(function() {
-    if (!endSessionEarly) {
-      let countText = getCountDownText();
-      countText.innerHTML = "";
-    }
-  }, timeUtilNextEvent  * 1000);
-  timeouts.push(timeout);
- }
+//    timeout = setTimeout(function() {
+//     if (!endSessionEarly) {
+//       let countText = getCountdownText();
+//       countText.innerHTML = "";
+//     }
+//   }, timeUtilNextEvent  * 1000);
+//   timeouts.push(timeout);
+//  }
 
  if (timeUtilNextEvent >= 3 && audioCountdownOn) {
    timeout = setTimeout(function() {
@@ -186,6 +188,7 @@ function doCountdown(timeUtilNextEvent, callback) {
    }, (timeUtilNextEvent - 1) * 1000);
    timeouts.push(timeout);
  }
+ 
 }
 
 function expand() {
@@ -302,8 +305,8 @@ function getActionText() {
  return document.getElementById('actionText');
 }
 
-function getCountDownText() {
-  return document.getElementById('countDownText');
+function getCountdownText() {
+  return document.getElementById('countdownText');
 }
 
 function playExpand() {
